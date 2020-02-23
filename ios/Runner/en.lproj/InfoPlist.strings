@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by 海渡裕貴 on 2020/02/23.
+  Copyright © 2020 The Chromium Authors. All rights reserved.
+*/
+
+CFBundleDisplayName = "Omusubi Gonbei";
+CFBundleName = "Omusubi Gonbei";
