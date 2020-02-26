@@ -1,43 +1,57 @@
 import 'package:flutter/material.dart';
+import '../../core/providers/base_provider.dart';
 import '../../app_localizations.dart';
 
 class StyleList {
-  static const TextStyle appBarTitleStyle = const TextStyle(
+  static const appBarTitleStyle = const TextStyle(
     fontSize: 32.0,
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle buttonTextStyle = const TextStyle(
+  static const buttonTextStyle = const TextStyle(
     fontSize: 24.0,
     fontWeight: FontWeight.w900,
   );
 
-  static const TextStyle baseTitleTextStyle = const TextStyle(
-    fontSize: 24.0,
-    fontWeight: FontWeight.bold,
+  static const baseTitleTextStyle = const TextStyle(
+    fontSize: 32.0,
+    fontWeight: FontWeight.w900,
   );
 
-  static const EdgeInsets removePadding = const EdgeInsets.all(0.0);
+  static const removePadding = const EdgeInsets.all(0.0);
 
-  static const EdgeInsets allPadding10 = const EdgeInsets.all(10.0);
+  static const allPadding10 = const EdgeInsets.all(10.0);
 
-  static const EdgeInsets horizontalPadding20 = const EdgeInsets.symmetric(
+  static const horizontalPadding5 = const EdgeInsets.symmetric(horizontal: 5.0);
+
+  static const horizontalPadding20 = const EdgeInsets.symmetric(
     horizontal: 20.0,
   );
 
-  static const EdgeInsets verticalHorizontalPaddding1020 =
+  static const verticalHorizontalpadding1020 =
       const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 
-  static const EdgeInsets verticalHorizontalPaddding25 =
+  static const verticalHorizontalPadding25 =
       const EdgeInsets.symmetric(vertical: 2, horizontal: 5);
 
-  static const SizedBox verticalBox10 = const SizedBox(
+  static const verticalBox10 = const SizedBox(
     height: 10.0,
   );
 
-  static const SizedBox verticalBox20 = const SizedBox(
+  static const verticalBox20 = const SizedBox(
     height: 20.0,
   );
+
+  static String localizedPrice(BuildContext context, int price) {
+    switch (Localizations.localeOf(context).languageCode) {
+      case 'en':
+        return '\$${price / 100}';
+      case 'ja':
+        return '\¥$price';
+      default:
+        return '\$${price / 100}';
+    }
+  }
 
   static String localizedAlertTtile(BuildContext context, String content) {
     switch (Localizations.localeOf(context).languageCode) {
@@ -68,6 +82,24 @@ class StyleList {
               : Colors.white,
         ),
       ),
+    );
+  }
+
+  static Widget loadingViewState() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  static Widget emptyViewState(String text) {
+    return Center(
+      child: Text(text),
+    );
+  }
+
+  static Widget errorViewState(String text) {
+    return Center(
+      child: Text(text),
     );
   }
 }

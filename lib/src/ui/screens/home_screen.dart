@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/providers/category_provider.dart';
+import '../../core/providers/product_provider.dart';
 import '../global/routes/route_generator.dart';
-import 'product_screen.dart';
 import 'cart_screen.dart';
+import 'product_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -13,14 +17,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  final List<GlobalKey<NavigatorState>> _navigators = [
+  final _navigators = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
   ];
 
   @override
+  void didChangeDependencies() {
+    final lang = Localizations.localeOf(context).languageCode;
+    Provider.of<CategoryProvider>(context, listen: false)
+        .fetchCategoryList(lang);
+    Provider.of<ProductProvider>(context, listen: false).fetchProductList(lang);
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //? need scaffold?
     return WillPopScope(
       onWillPop: () async =>
           !await _navigators[_currentIndex].currentState.maybePop(),
