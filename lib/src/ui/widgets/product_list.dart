@@ -33,7 +33,7 @@ class ProductList extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
+            Padding(
               padding: StyleList.verticalHorizontalpadding1020,
               child: Text(
                 category.name,

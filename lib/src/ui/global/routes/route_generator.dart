@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gonbei_app/src/ui/screens/product_detail_screen.dart';
 import '../../../app_localizations.dart';
+import '../../../core/models/product_model.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/cart_screen.dart';
 
@@ -12,13 +14,15 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutePath.homeScreen:
         return MaterialPageRoute(builder: (context) => HomeScreen());
-      case RoutePath.cartScreen:
-        // if (args is Strring) {
-        return MaterialPageRoute(
-          builder: (context) => CartScreen(),
-        );
-      // }
-      // return _errorRoute();
+      case RoutePath.productDetailScreen:
+        if (args is ProductModel) {
+          return MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(
+              productItem: args,
+            ),
+          );
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();

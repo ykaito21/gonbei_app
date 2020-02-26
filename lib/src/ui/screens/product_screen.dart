@@ -40,7 +40,7 @@ class ProductScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Container(
+        Padding(
           padding: StyleList.verticalHorizontalpadding1020,
           child: Text(
             AppLocalizations.of(context).translate('musubitate'),
@@ -52,9 +52,7 @@ class ProductScreen extends StatelessWidget {
           padding: StyleList.horizontalPadding5,
           child: CategoryList(),
         ),
-        const SizedBox(
-          height: 30.0,
-        ),
+        StyleList.verticalBox30,
         Expanded(
           child: ProductList(),
         ),

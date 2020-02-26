@@ -37,8 +37,7 @@ class ProductCard extends StatelessWidget {
                     Text(
                       productItem.name,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16.0,
+                      style: StyleList.smallBoldTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -48,10 +47,8 @@ class ProductCard extends StatelessWidget {
                     Text(
                       StyleList.localizedPrice(context, productItem.price),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: StyleList.smallBoldTextStyle.copyWith(
                         color: Theme.of(context).accentColor,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w900,
                       ),
                     ),
                   ],
@@ -62,11 +59,11 @@ class ProductCard extends StatelessWidget {
           Positioned.fill(
             child: InkWell(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   RoutePath.productDetailScreen,
-                //   arguments: productItem,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  RoutePath.productDetailScreen,
+                  arguments: productItem,
+                );
               },
               splashColor: Theme.of(context).accentColor,
               borderRadius: BorderRadius.circular(10.0),

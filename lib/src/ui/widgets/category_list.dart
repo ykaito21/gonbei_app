@@ -30,7 +30,7 @@ class CategoryList extends StatelessWidget {
         final categoryItem = categoryList[index];
         return GestureDetector(
           onTap: () => _onTap(context, index),
-          child: Container(
+          child: Padding(
             padding: StyleList.horizontalPadding5,
             child: CategoryCard(
               categoryItem: categoryItem,

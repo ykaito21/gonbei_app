@@ -3,18 +3,18 @@ import '../../core/providers/base_provider.dart';
 import '../../app_localizations.dart';
 
 class StyleList {
-  static const appBarTitleStyle = const TextStyle(
+  static const baseTitleTextStyle = const TextStyle(
     fontSize: 32.0,
-    fontWeight: FontWeight.bold,
-  );
-
-  static const buttonTextStyle = const TextStyle(
-    fontSize: 24.0,
     fontWeight: FontWeight.w900,
   );
 
-  static const baseTitleTextStyle = const TextStyle(
-    fontSize: 32.0,
+  static const baseSubtitleTextStyle = const TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w900,
+  );
+
+  static const smallBoldTextStyle = const TextStyle(
+    fontSize: 16.0,
     fontWeight: FontWeight.w900,
   );
 
@@ -23,6 +23,10 @@ class StyleList {
   static const allPadding10 = const EdgeInsets.all(10.0);
 
   static const horizontalPadding5 = const EdgeInsets.symmetric(horizontal: 5.0);
+
+  static const horizontalPadding10 = const EdgeInsets.symmetric(
+    horizontal: 10.0,
+  );
 
   static const horizontalPadding20 = const EdgeInsets.symmetric(
     horizontal: 20.0,
@@ -40,6 +44,10 @@ class StyleList {
 
   static const verticalBox20 = const SizedBox(
     height: 20.0,
+  );
+
+  static const verticalBox30 = const SizedBox(
+    height: 30.0,
   );
 
   static String localizedPrice(BuildContext context, int price) {
