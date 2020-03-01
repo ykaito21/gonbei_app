@@ -10,6 +10,7 @@ class CategoryProvider extends BaseProvider {
 
   Future<void> fetchCategoryList(String lang) async {
     try {
+      //* cause exception
       // setViewState(ViewState.Busy);
       final res = await _dbService.getSelectedDataCollection(
         path: ApiPath.categories(),

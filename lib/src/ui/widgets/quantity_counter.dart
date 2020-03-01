@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/providers/product_detail_screen_provider.dart';
 import '../global/style_list.dart';
+import '../global/extensions.dart';
 
 class QuantityCounter extends StatelessWidget {
   const QuantityCounter({Key key}) : super(key: key);
@@ -10,7 +11,7 @@ class QuantityCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productDetailScreenProvider =
-        Provider.of<ProductDetailScreenProvider>(context, listen: false);
+        context.provider<ProductDetailScreenProvider>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -18,22 +19,22 @@ class QuantityCounter extends StatelessWidget {
           onPressed: productDetailScreenProvider.decrement,
           child: Icon(
             Icons.remove,
-            color: Theme.of(context).accentColor,
+            color: context.accentColor,
           ),
           color: Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
             side: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: context.accentColor,
             ),
           ),
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Consumer<ProductDetailScreenProvider>(
-            builder: (context, provider, child) {
+            builder: (context, productDetailScreenProvider, child) {
               return Text(
-                "${provider.quantity}",
+                "${productDetailScreenProvider.quantity}",
                 style: StyleList.baseSubtitleTextStyle,
               );
             },

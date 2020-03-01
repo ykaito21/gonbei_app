@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/models/product_model.dart';
-
 import '../global/style_list.dart';
+import '../global/extensions.dart';
 import '../global/routes/route_path.dart';
 import '../shared/widgets/cached_image.dart';
 
@@ -45,10 +45,10 @@ class ProductCard extends StatelessWidget {
                       child: StyleList.verticalBox10,
                     ),
                     Text(
-                      StyleList.localizedPrice(context, productItem.price),
+                      context.localizePrice(productItem.price),
                       textAlign: TextAlign.center,
                       style: StyleList.smallBoldTextStyle.copyWith(
-                        color: Theme.of(context).accentColor,
+                        color: context.accentColor,
                       ),
                     ),
                   ],
@@ -58,14 +58,11 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned.fill(
             child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  RoutePath.productDetailScreen,
-                  arguments: productItem,
-                );
-              },
-              splashColor: Theme.of(context).accentColor,
+              onTap: () => context.pushNamed(
+                RoutePath.productDetailScreen,
+                arguments: productItem,
+              ),
+              splashColor: context.accentColor.withOpacity(0.5),
               borderRadius: BorderRadius.circular(10.0),
             ),
           )

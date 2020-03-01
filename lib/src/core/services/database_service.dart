@@ -5,6 +5,7 @@ class DatabaseService {
   DatabaseService._();
   static final instance = DatabaseService._();
   final _db = Firestore.instance;
+  // factory DatabaseService() => instance;
 
 // CREATE
   Future<void> createDocument({

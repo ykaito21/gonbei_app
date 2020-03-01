@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:gonbei_app/src/app_localizations.dart';
 
 import '../../core/models/product_model.dart';
 import '../../core/providers/product_detail_screen_provider.dart';
+import '../global/routes/route_path.dart';
 import '../global/style_list.dart';
+import '../global/extensions.dart';
 import '../shared/widgets/cached_image.dart';
 import '../shared/widgets/base_button.dart';
 import '../widgets/quantity_counter.dart';
@@ -50,12 +52,11 @@ class ProductDetailScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: StyleList.leftPadding20,
                             child: Text(
-                              StyleList.localizedPrice(
-                                  context, productItem.price),
+                              context.localizePrice(productItem.price),
                               style: StyleList.baseTitleTextStyle.copyWith(
-                                color: Theme.of(context).accentColor,
+                                color: context.accentColor,
                                 fontSize: 30.0,
                               ),
                             ),
@@ -81,10 +82,13 @@ class ProductDetailScreen extends StatelessWidget {
                 QuantityCounter(),
                 StyleList.verticalBox30,
                 BaseButton(
-                  buttonText:
-                      AppLocalizations.of(context).translate('addToCart'),
+                  buttonText: context.translate('addToCart'),
                   onPressed: () async {
                     // await _addItemToCart();
+                    // Navigator.of(context, rootNavigator: true)
+                    //     .pushNamed(RoutePath.authScreen);
+                    context.pushNamed(RoutePath.authScreen,
+                        rootNavigator: true);
                   },
                 ),
               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app_localizations.dart';
+import '../global/extensions.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key key}) : super(key: key);
@@ -10,7 +10,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text(AppLocalizations.of(context).translate('edit')),
+        child: Text(context.translate('edit')),
       ),
     );
   }

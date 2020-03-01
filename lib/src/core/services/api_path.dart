@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class ApiPath {
   static String categories() => 'categories';
   static String products() => 'products';
-//   static String user({@required String userId}) => 'users/$userId';
+  static String user({@required String userId}) => 'users/$userId';
 //   static String cart({@required String userId}) => 'users/$userId/cart';
 //   static String cartItem(
 //           {@required String userId, @required String cartItemId}) =>

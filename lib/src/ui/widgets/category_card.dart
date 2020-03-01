@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gonbei_app/src/core/models/category_model.dart';
-import 'package:gonbei_app/src/core/providers/product_screen_provider.dart';
-import 'package:provider/provider.dart';
 
+import '../../core/models/category_model.dart';
 import '../../core/providers/category_provider.dart';
+import '../../core/providers/product_screen_provider.dart';
 import '../shared/widgets/cached_image.dart';
-import '../global/color_list.dart';
+import '../global/extensions.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel categoryItem;
@@ -18,10 +17,10 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryList =
-        Provider.of<CategoryProvider>(context, listen: false).categoryList;
-    final currentCategoryIndex =
-        Provider.of<ProductScreenProvider>(context).currentCategoryIndex;
+    final categoryList = context.provider<CategoryProvider>().categoryList;
+    final currentCategoryIndex = context
+        .provider<ProductScreenProvider>(listen: true)
+        .currentCategoryIndex;
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
       child: Container(

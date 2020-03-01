@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_screen_provider.dart';
 import '../global/style_list.dart';
+import '../global/extensions.dart';
 import 'category_card.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({Key key}) : super(key: key);
 
   void _onTap(BuildContext context, int index) {
-    final productScreenProvider =
-        Provider.of<ProductScreenProvider>(context, listen: false);
-    final changeCurrentCategoryIndex =
-        productScreenProvider.changeCurrentCategoryIndex;
-    final changeProductListPage = productScreenProvider.changeProductListPage;
-    changeCurrentCategoryIndex(index);
-    changeProductListPage();
+    final productScreenProvider = context.provider<ProductScreenProvider>();
+    productScreenProvider.changeCurrentCategoryIndex(index);
+    productScreenProvider.changeProductListPage();
   }
 
   @override
   Widget build(BuildContext context) {
-    final categoryList =
-        Provider.of<CategoryProvider>(context, listen: false).categoryList;
+    final categoryList = context.provider<CategoryProvider>().categoryList;
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: categoryList.length,

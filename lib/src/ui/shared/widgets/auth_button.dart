@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import '../../global/style_list.dart';
 import '../../global/extensions.dart';
 
-class BaseButton extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final String buttonText;
+  final Icon buttonIcon;
   final Function onPressed;
 
-  const BaseButton({
+  const AuthButton({
     Key key,
     @required this.buttonText,
-    this.onPressed,
+    @required this.buttonIcon,
+    @required this.onPressed,
   })  : assert(buttonText != null),
+        assert(buttonIcon != null),
+        assert(onPressed != null),
         super(key: key);
 
   @override
@@ -19,15 +23,22 @@ class BaseButton extends StatelessWidget {
       onPressed: onPressed,
       child: Padding(
         padding: StyleList.allPadding10,
-        child: Text(
-          buttonText,
-          style: StyleList.baseSubtitleTextStyle,
+        child: Row(
+          children: <Widget>[
+            buttonIcon,
+            Padding(
+              padding: StyleList.leftPadding20,
+              child: Text(
+                buttonText,
+                style: StyleList.smallBoldTextStyle.copyWith(
+                  color: context.primaryColor,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       color: context.accentColor,
-      textColor: context.primaryColor,
-      disabledColor: context.accentColor.withOpacity(0.5),
-      disabledTextColor: context.primaryColor.withOpacity(0.5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
         // side: BorderSide(

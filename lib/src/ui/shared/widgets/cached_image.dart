@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import '../../global/extensions.dart';
 
 class CachedImage extends StatelessWidget {
   final imageUrl;
@@ -27,7 +28,7 @@ class CachedImage extends StatelessWidget {
       ),
       errorWidget: (context, url, error) => Icon(
         Icons.error,
-        color: Theme.of(context).accentColor,
+        color: context.accentColor,
       ),
     );
   }

@@ -11,8 +11,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Container(
         height: 48.0,
         padding: const EdgeInsets.symmetric(
-          horizontal: 10.0,
           vertical: 5.0,
+          horizontal: 10.0,
         ),
         decoration: BoxDecoration(
           color: Colors.white,

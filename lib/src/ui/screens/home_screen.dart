@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_provider.dart';
 import '../global/routes/route_generator.dart';
+import '../global/extensions.dart';
 import 'cart_screen.dart';
 import 'product_screen.dart';
 
@@ -24,10 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void didChangeDependencies() {
-    final lang = Localizations.localeOf(context).languageCode;
-    Provider.of<CategoryProvider>(context, listen: false)
-        .fetchCategoryList(lang);
-    Provider.of<ProductProvider>(context, listen: false).fetchProductList(lang);
+    final lang = context.lang;
+    context.provider<CategoryProvider>().fetchCategoryList(lang);
+    context.provider<ProductProvider>().fetchProductList(lang);
     super.didChangeDependencies();
   }
 
@@ -57,13 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
         tabBar: CupertinoTabBar(
           border: Border(
             top: BorderSide(
-              color: Theme.of(context).primaryColor,
+              color: context.primaryColor,
               width: 0.0, // One physical pixel.
               style: BorderStyle.solid,
             ),
           ),
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          activeColor: Theme.of(context).accentColor,
+          backgroundColor: context.scaffoldBackgroundColor,
+          activeColor: context.accentColor,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

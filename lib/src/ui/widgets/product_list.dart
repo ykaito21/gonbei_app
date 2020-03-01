@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../core/models/product_model.dart';
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_provider.dart';
 import '../../core/providers/product_screen_provider.dart';
 import '../global/style_list.dart';
+import '../global/extensions.dart';
 
 import 'product_card.dart';
 
@@ -13,22 +13,17 @@ class ProductList extends StatelessWidget {
   const ProductList({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final categoryList =
-        Provider.of<CategoryProvider>(context, listen: false).categoryList;
-    final productScreenProvider =
-        Provider.of<ProductScreenProvider>(context, listen: false);
-    final Function changeCurrentCategoryIndex =
-        productScreenProvider.changeCurrentCategoryIndex;
-    final PageController productPageController =
-        productScreenProvider.productPageController;
+    final categoryList = context.provider<CategoryProvider>().categoryList;
+    final productScreenProvider = context.provider<ProductScreenProvider>();
 
     return PageView.builder(
-      controller: productPageController,
-      onPageChanged: changeCurrentCategoryIndex,
+      controller: productScreenProvider.productPageController,
+      onPageChanged: productScreenProvider.changeCurrentCategoryIndex,
       itemCount: categoryList.length,
       itemBuilder: (context, index) {
         final category = categoryList[index];
-        final productList = Provider.of<ProductProvider>(context, listen: false)
+        final productList = context
+            .provider<ProductProvider>()
             .getCategoryProductList(category.id);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,7 +38,7 @@ class ProductList extends StatelessWidget {
             Expanded(
               child: Container(
                 child: GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: StyleList.horizontalPadding10,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 2 / 3,
                     crossAxisCount: 3,

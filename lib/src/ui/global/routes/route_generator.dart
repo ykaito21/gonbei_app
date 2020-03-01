@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gonbei_app/src/ui/screens/product_detail_screen.dart';
-import '../../../app_localizations.dart';
+
 import '../../../core/models/product_model.dart';
 import '../../screens/home_screen.dart';
-import '../../screens/cart_screen.dart';
+import '../../screens/auth_screen.dart';
+import '../../screens/product_detail_screen.dart';
 
 import '../style_list.dart';
+import '../extensions.dart';
 import 'route_path.dart';
 
 class RouteGenerator {
@@ -23,6 +24,11 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
+      case RoutePath.authScreen:
+        return MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (context) => AuthScreen(),
+        );
 
       default:
         return _errorRoute();
@@ -36,7 +42,7 @@ class RouteGenerator {
           appBar: AppBar(),
           body: Center(
             child: Text(
-              AppLocalizations.of(context).translate('error'),
+              context.translate('error'),
               style: StyleList.baseTitleTextStyle,
             ),
           ),
