@@ -21,6 +21,9 @@ extension ContextExtensions on BuildContext {
   Color get accentColor => Theme.of(this).accentColor;
   Color get scaffoldBackgroundColor => Theme.of(this).scaffoldBackgroundColor;
 
+// Device Size
+  double get width => MediaQuery.of(this).size.width;
+
   // Provider
   T provider<T>({bool listen = false}) => Provider.of<T>(this, listen: listen);
 
@@ -40,14 +43,25 @@ extension ContextExtensions on BuildContext {
     }
   }
 
-  String localizeAlertTtile(String content) {
+  String localizeAlertTtile(String content, String key) {
     switch (this.lang) {
       case 'en':
-        return '${this.translate('alertDeleteTitle')} "$content"${this.translate('questionMark')}';
+        return '${this.translate(key)} "$content"${this.translate('questionMark')}';
       case 'ja':
-        return '"$content"${this.translate('alertDeleteTitle')}${this.translate('questionMark')}';
+        return '"$content"${this.translate(key)}${this.translate('questionMark')}';
       default:
-        return '${this.translate('alertDeleteTitle')} "$content"${this.translate('questionMark')}';
+        return '${this.translate(key)} "$content"${this.translate('questionMark')}';
+    }
+  }
+
+  String localizeMessage(String content, String key) {
+    switch (this.lang) {
+      case 'en':
+        return '${this.translate(key)} "$content"';
+      case 'ja':
+        return '"$content"${this.translate(key)}';
+      default:
+        return '${this.translate(key)} "$content"';
     }
   }
 

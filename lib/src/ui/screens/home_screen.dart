@@ -1,10 +1,15 @@
+import 'package:badges/badges.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gonbei_app/src/core/models/cart_model.dart';
+import 'package:gonbei_app/src/core/providers/cart_provider.dart';
 
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_provider.dart';
 import '../global/routes/route_generator.dart';
 import '../global/extensions.dart';
+import '../shared/widgets/stream_wrapper.dart';
 import 'cart_screen.dart';
 import 'product_screen.dart';
 
@@ -32,6 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(context.provider<FirebaseUser>());
+    final cartProvider = context.provider<CartProvider>();
     return WillPopScope(
       onWillPop: () async =>
           !await _navigators[_currentIndex].currentState.maybePop(),
@@ -68,7 +75,19 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.view_list),
+              icon: StreamBuilder<List<CartModel>>(
+                stream: cartProvider.streamCart,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data.isNotEmpty)
+                    return Badge(
+                      badgeColor: context.accentColor,
+                      toAnimate: false,
+                      badgeContent: _badgeText(context, snapshot.data.length),
+                      child: Icon(Icons.shopping_cart),
+                    );
+                  return Icon(Icons.shopping_cart);
+                },
+              ),
             ),
           ],
           onTap: (index) {
@@ -80,6 +99,16 @@ class _HomeScreenState extends State<HomeScreen> {
             _currentIndex = index;
           },
         ),
+      ),
+    );
+  }
+
+  Widget _badgeText(BuildContext context, int quantity) {
+    return Text(
+      '$quantity',
+      style: TextStyle(
+        color: context.primaryColor,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

@@ -4,12 +4,14 @@ import 'package:provider/provider.dart';
 
 import '../../core/models/product_model.dart';
 import '../../core/providers/product_detail_screen_provider.dart';
+import '../../core/providers/cart_provider.dart';
 import '../global/routes/route_path.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
 import '../shared/widgets/cached_image.dart';
+import '../shared/platform/platform_exception_alert_dialog.dart';
 import '../shared/widgets/base_button.dart';
-import '../widgets/quantity_counter.dart';
+import '../widgets/row_quantity_counter.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel productItem;
@@ -18,6 +20,37 @@ class ProductDetailScreen extends StatelessWidget {
     @required this.productItem,
   })  : assert(productItem != null),
         super(key: key);
+
+  Future<void> _onPressedAddToCart(
+      BuildContext context,
+      ProductModel productItem,
+      ProductDetailScreenProvider productDetailScreenProvider) async {
+    final quantity = productDetailScreenProvider.quantity;
+    final currentUser = context.provider<FirebaseUser>();
+    if (currentUser == null) {
+      context.pushNamed(RoutePath.authScreen, rootNavigator: true);
+    } else {
+      try {
+        await context
+            .provider<CartProvider>()
+            .addCartItem(productItem: productItem, quantity: quantity);
+        //* optional
+        // Scaffold.of(context)
+        //   ..removeCurrentSnackBar()
+        //   ..showSnackBar(
+        //     context.baseSnackBar(
+        //       context.localizeMessage(productItem.name, 'isAdded'),
+        //     ),
+        //   );
+      } catch (e) {
+        PlatformExceptionAlertDialog(
+          title: context.translate('error'),
+          exception: e,
+          context: context,
+        ).show(context);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +112,15 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                 ),
                 StyleList.verticalBox30,
-                QuantityCounter(),
+                RowQuantityCounter(),
                 StyleList.verticalBox30,
-                BaseButton(
-                  buttonText: context.translate('addToCart'),
-                  onPressed: () async {
-                    // await _addItemToCart();
-                    // Navigator.of(context, rootNavigator: true)
-                    //     .pushNamed(RoutePath.authScreen);
-                    context.pushNamed(RoutePath.authScreen,
-                        rootNavigator: true);
+                Consumer<ProductDetailScreenProvider>(
+                  builder: (context, productDetailScreenProvider, child) {
+                    return BaseButton(
+                      buttonText: context.translate('addToCart'),
+                      onPressed: () async => await _onPressedAddToCart(
+                          context, productItem, productDetailScreenProvider),
+                    );
                   },
                 ),
               ],

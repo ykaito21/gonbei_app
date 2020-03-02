@@ -1,3 +1,5 @@
+import 'package:gonbei_app/src/core/models/product_model.dart';
+
 import 'base_provider.dart';
 
 class ProductDetailScreenProvider extends BaseProvider {

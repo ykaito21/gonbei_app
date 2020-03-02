@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-class ProductModel {
+class ProductModel extends Equatable {
   final String id;
   final String name;
   final String description;
@@ -28,8 +29,22 @@ class ProductModel {
     );
   }
 
+  // Map<String, dynamic> toMap() {
+  //   return {
+  //     // "id": id,
+  //     "productId": id,
+  //     "name": name,
+  //     "description": description,
+  //     "imageUrl": imageUrl,
+  //     "price": price,
+  //     "categoryId": categoryId,
+  //   };
+  // }
+
   @override
-  String toString() {
-    return 'id: $id, name: $name, description: $imageUrl, imageUrl: $imageUrl, price: $price, categoryId: $categoryId';
-  }
+  List<Object> get props =>
+      [id, name, description, imageUrl, price, categoryId];
+
+  @override
+  bool get stringify => true;
 }

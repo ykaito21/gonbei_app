@@ -24,9 +24,10 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
         return context.translate('ERROR_OPERATION_NOT_ALLOWED');
       }
     }
-    return context.translate(_errors[exception?.code]) ??
-        exception.message ??
-        exception.toString();
+    return context.translate(_errors[exception.code]) ??
+        context.translate('ERROR_DISABLED');
+    // exception.message ??
+    // exception.toString();
   }
 
   static Map<String, String> _errors = {

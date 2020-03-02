@@ -32,7 +32,8 @@ class ProductScreen extends StatelessWidget {
         context.provider<ProductProvider>(listen: true).viewState;
     if (categoryProviderViewState == ViewState.Error ||
         productProviderViewState == ViewState.Error)
-      return StyleList.errorViewState(context.translate('error'));
+      return StyleList.errorViewState(
+          context.translate('error'), StyleList.baseSubtitleTextStyle);
     if (categoryProviderViewState != ViewState.Retrieved ||
         productProviderViewState != ViewState.Retrieved)
       return StyleList.loadingViewState();
@@ -51,7 +52,7 @@ class ProductScreen extends StatelessWidget {
           padding: StyleList.horizontalPadding5,
           child: CategoryList(),
         ),
-        StyleList.verticalBox30,
+        StyleList.verticalBox10,
         Expanded(
           child: ProductList(),
         ),

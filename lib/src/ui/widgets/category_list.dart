@@ -9,7 +9,7 @@ import 'category_card.dart';
 class CategoryList extends StatelessWidget {
   const CategoryList({Key key}) : super(key: key);
 
-  void _onTap(BuildContext context, int index) {
+  void _onTapCategory(BuildContext context, int index) {
     final productScreenProvider = context.provider<ProductScreenProvider>();
     productScreenProvider.changeCurrentCategoryIndex(index);
     productScreenProvider.changeProductListPage();
@@ -24,7 +24,7 @@ class CategoryList extends StatelessWidget {
       itemBuilder: (context, index) {
         final categoryItem = categoryList[index];
         return GestureDetector(
-          onTap: () => _onTap(context, index),
+          onTap: () => _onTapCategory(context, index),
           child: Padding(
             padding: StyleList.horizontalPadding5,
             child: CategoryCard(

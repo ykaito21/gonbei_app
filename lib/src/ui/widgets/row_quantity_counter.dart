@@ -5,8 +5,8 @@ import '../../core/providers/product_detail_screen_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
 
-class QuantityCounter extends StatelessWidget {
-  const QuantityCounter({Key key}) : super(key: key);
+class RowQuantityCounter extends StatelessWidget {
+  const RowQuantityCounter({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,9 @@ class QuantityCounter extends StatelessWidget {
           child: Icon(
             Icons.remove,
             color: context.accentColor,
+            size: 32,
           ),
-          color: Theme.of(context).primaryColor,
+          color: context.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
             side: BorderSide(
@@ -35,7 +36,7 @@ class QuantityCounter extends StatelessWidget {
             builder: (context, productDetailScreenProvider, child) {
               return Text(
                 "${productDetailScreenProvider.quantity}",
-                style: StyleList.baseSubtitleTextStyle,
+                style: StyleList.mediumBoldTextStyle,
               );
             },
           ),
@@ -44,13 +45,14 @@ class QuantityCounter extends StatelessWidget {
           onPressed: productDetailScreenProvider.increment,
           child: Icon(
             Icons.add,
-            color: Theme.of(context).primaryColor,
+            color: context.primaryColor,
+            size: 32,
           ),
-          color: Theme.of(context).accentColor,
+          color: context.accentColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
             side: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: context.accentColor,
             ),
           ),
         ),

@@ -5,29 +5,32 @@ class StreamWrapper<T> extends StatelessWidget {
   final Function onSuccess;
   final Function onError;
   final Function onWaitting;
+  final T initialData;
   const StreamWrapper({
     Key key,
     @required this.stream,
     @required this.onSuccess,
     this.onError,
     this.onWaitting,
+    this.initialData,
   })  : assert(stream != null),
         assert(onSuccess != null),
         super(key: key);
 
-  Function get _defaultOnError => (cotext, error) => Center(
+  Function get _defaultOnError => (BuildContext cotext, error) => Center(
         child: Text('Error: $error'),
       );
 
-  Function get _defaultOnWaitting => (cotext) => Center(
+  Function get _defaultOnWaitting => (BuildContext cotext) => Center(
         child: CircularProgressIndicator(),
       );
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<T>(
+      initialData: initialData,
       stream: stream,
-      builder: (context, AsyncSnapshot<T> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
         if (snapshot.hasError)
           return onError != null
               ? onError(context, snapshot.error)

@@ -6,6 +6,11 @@ class StyleList {
     fontWeight: FontWeight.w900,
   );
 
+  static const mediumBoldTextStyle = const TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.w900,
+  );
+
   static const baseSubtitleTextStyle = const TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w900,
@@ -30,6 +35,8 @@ class StyleList {
   static const horizontalPadding20 =
       const EdgeInsets.symmetric(horizontal: 20.0);
 
+  static const leftPadding10 = const EdgeInsets.only(left: 10.0);
+
   static const leftPadding20 = const EdgeInsets.only(left: 20.0);
 
   static const verticalHorizontalpadding1020 =
@@ -44,21 +51,13 @@ class StyleList {
 
   static const verticalBox30 = const SizedBox(height: 30.0);
 
-  static Widget loadingViewState() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  }
+  static Widget loadingViewState() =>
+      Center(child: CircularProgressIndicator());
 
-  static Widget emptyViewState(String text) {
-    return Center(
-      child: Text(text),
-    );
-  }
+  static Widget emptyViewState(String text, TextStyle style) =>
+      Center(child: Text(text, style: style));
 
-  static Widget errorViewState(String text) {
-    return Center(
-      child: Text(text),
-    );
-  }
+  static Widget errorViewState(String text, TextStyle style) => Center(
+        child: Text(text, style: style),
+      );
 }
