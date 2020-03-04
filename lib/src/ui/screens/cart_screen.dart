@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gonbei_app/src/core/models/cart_model.dart';
 import 'package:gonbei_app/src/ui/global/style_list.dart';
 import 'package:gonbei_app/src/ui/shared/widgets/stream_wrapper.dart';
+import 'package:gonbei_app/src/ui/shared/widgets/unauthenticated_card.dart';
 import 'package:gonbei_app/src/ui/widgets/cart_card.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 // import 'package:omusubi_app/src/core/providers/base_provider.dart';
@@ -52,40 +53,29 @@ class CartScreen extends StatelessWidget {
     }
   }
 
-  // Future<void> _orderCart({
-  //   @required BuildContext context,
-  //   @required CartProvider cartProvider,
-  //   @required int totalPrice,
-  //   @required int totalQuantity,
-  //   @required List<CartItem> cart,
-  // }) async {
-  //   //todo handle card
-  //   try {
-  //     Scaffold.of(context)
-  //       ..removeCurrentSnackBar()
-  //       ..showSnackBar(
-  //         SnackBars.baseSnackBar(context, '注文しました。'),
-  //       );
-  //     await cartProvider.convertToOrder(
-  //       OrderItem(
-  //         id: 'New',
-  //         price: totalPrice,
-  //         quantity: totalQuantity,
-  //         date: DateTime.now(),
-  //         status: 'requires_confirmation',
-  //         cart: cart,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     PlatformExceptionAlertDialog(
-  //       title: 'エラー',
-  //       exception: e,
-  //     ).show(context);
-  //   }
-
-  //   //* Square Payment Test
-  //   // cartProvider.paymentStart();
-  // }
+  Future<void> _onPressedBuy(BuildContext context) async {
+    try {
+      final code = await context.provider<CartProvider>().convertToOrder();
+      PlatformAlertDialog(
+        title: context.translate('orderCode'),
+        content: '',
+        defaultActionText: context.translate('confirm'),
+        optionalContent: Container(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Text(
+            code.toString(),
+            style: StyleList.mediumBoldTextStyle,
+          ),
+        ),
+      ).show(context);
+    } catch (e) {
+      PlatformExceptionAlertDialog(
+        title: context.translate('error'),
+        exception: e,
+        context: context,
+      ).show(context);
+    }
+  }
 
   // // stripe card check
   // Future<void> _addCard(
@@ -134,26 +124,15 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = context.provider<CartProvider>();
-    final currentUser = context.provider<FirebaseUser>();
     return Scaffold(
       appBar: BaseAppBar(),
-      body: currentUser == null
-          ? Container(
-              width: double.infinity,
-              padding: StyleList.allPadding10,
-              child: BaseButton(
-                buttonText: context.translate('signupOrLogin'),
-                onPressed: () => context.pushNamed(RoutePath.authScreen,
-                    rootNavigator: true),
-              ),
-            )
+      body: context.provider<FirebaseUser>() == null
+          ? UnauthenticatedCard()
           : StreamWrapper<List<CartModel>>(
               stream: cartProvider.streamCart,
               onError: (BuildContext context, _) => StyleList.errorViewState(
                   context.translate('error'), StyleList.baseSubtitleTextStyle),
               onSuccess: (BuildContext context, List<CartModel> cart) {
-                final totalPrice = cartProvider.totalPrice();
-                // final totalQuantity = cartProvider.totalQuantity();
                 if (cart.isEmpty)
                   return StyleList.emptyViewState(
                       context.translate('emptyCart'),
@@ -232,7 +211,8 @@ class CartScreen extends StatelessWidget {
                                     style: StyleList.baseTitleTextStyle,
                                   ),
                                   Text(
-                                    context.localizePrice(totalPrice),
+                                    context.localizePrice(
+                                        cartProvider.totalPrice()),
                                     style:
                                         StyleList.baseTitleTextStyle.copyWith(
                                       color: context.accentColor,
@@ -244,7 +224,8 @@ class CartScreen extends StatelessWidget {
                             StyleList.verticalBox10,
                             BaseButton(
                               buttonText: context.translate('buy'),
-                              onPressed: () async {
+                              onPressed: () {
+                                _onPressedBuy(context);
                                 // final bool confirmCard = await _checkCard(
                                 //     context: context,
                                 //     paymentProvider: _paymentProvider);

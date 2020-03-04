@@ -21,7 +21,7 @@ class CartModel extends Equatable {
       productItem: ProductModel(
         id: snapshot['productId'] ?? '',
         name: snapshot['name'] ?? '',
-        description: snapshot['description'],
+        description: snapshot['description'] ?? '',
         imageUrl: snapshot['imageUrl'] ?? '',
         price: snapshot['price'] ?? 0,
         categoryId: snapshot['categoryId'] ?? '',
@@ -29,7 +29,7 @@ class CartModel extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMapForeFirestore() {
     return {
       // "id": id,
       "quantity": quantity,
@@ -39,7 +39,7 @@ class CartModel extends Equatable {
       "imageUrl": productItem.imageUrl,
       "price": productItem.price,
       "categoryId": productItem.categoryId,
-      // "createdAt": DateTime.now(),
+      "createdAt": DateTime.now(),
     };
   }
 

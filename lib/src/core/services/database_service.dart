@@ -109,7 +109,7 @@ class DatabaseService {
     @required Map<String, dynamic> data,
   }) async {
     try {
-      return await _db.document(path).updateData(data);
+      await _db.document(path).updateData(data);
     } catch (e) {
       print(e);
       rethrow;
@@ -121,7 +121,20 @@ class DatabaseService {
     @required String path,
   }) async {
     try {
-      return _db.document(path).delete();
+      _db.document(path).delete();
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<void> removeAllDocument({
+    @required List<String> pathList,
+  }) async {
+    try {
+      await _db.runTransaction((Transaction tx) async {
+        for (String path in pathList) await tx.delete(_db.document(path));
+      });
     } catch (e) {
       print(e);
       rethrow;

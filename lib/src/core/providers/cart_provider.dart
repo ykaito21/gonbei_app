@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:rxdart/subjects.dart';
 
 import '../models/cart_model.dart';
+import '../models/order_model.dart';
 import '../models/product_model.dart';
 import '../services/database_service.dart';
 import '../services/api_path.dart';
@@ -13,6 +15,7 @@ class CartProvider {
   FirebaseUser _currentUser;
   final _dbService = DatabaseService.instance;
   final _cartSubject = BehaviorSubject<List<CartModel>>.seeded([]);
+  final random = Random();
   Stream<List<CartModel>> get streamCart => _cartSubject.stream;
   List<CartModel> get cart => _cartSubject.value;
 
@@ -72,16 +75,13 @@ class CartProvider {
     try {
       if (checkProduct.isEmpty) {
         final newCartItem = CartModel(
-          id: 'new item',
+          id: 'NEW_ITEM',
           quantity: quantity,
           productItem: productItem,
         );
         await _dbService.addDocument(
           path: ApiPath.cart(userId: _currentUser.uid),
-          data: {
-            ...newCartItem.toMap(),
-            "createdAt": DateTime.now(),
-          },
+          data: newCartItem.toMapForeFirestore(),
         );
       } else {
         final existingCartItem = checkProduct.first;
@@ -133,6 +133,38 @@ class CartProvider {
         path:
             ApiPath.cartItem(userId: _currentUser.uid, cartItemId: cartItem.id),
       );
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+//* can be improve to use transaction and batch
+  Future<int> convertToOrder() async {
+    final code = random.nextInt(9000) + 1000;
+    final newOrder = OrderModel(
+      id: 'NEW_ORDER',
+      price: totalPrice(),
+      quantity: totalQuantity(),
+      code: code.toString(),
+      date: DateTime.now(),
+      status: 'PENDING',
+      cart: cart,
+    );
+    try {
+      // add order
+      await _dbService.addDocument(
+        path: ApiPath.orders(userId: _currentUser.uid),
+        data: newOrder.toMapForFirestore(),
+      );
+      // get all cart items path
+      final pathList = cart
+          .map((cartItem) => ApiPath.cartItem(
+              userId: _currentUser.uid, cartItemId: cartItem.id))
+          .toList();
+      // remove all cart items with transaction
+      await _dbService.removeAllDocument(pathList: pathList);
+      return code;
     } catch (e) {
       print(e);
       rethrow;

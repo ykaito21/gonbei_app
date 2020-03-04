@@ -359,6 +359,10 @@ PODS:
   - sqflite (0.0.1):
     - Flutter
     - FMDB (~> 2.7.2)
+  - Stripe (19.0.0)
+  - stripe_payment (1.0.0):
+    - Flutter
+    - Stripe (>= 18.0.0)
 
 DEPENDENCIES:
   - apple_sign_in (from `.symlinks/plugins/apple_sign_in/ios`)
@@ -377,6 +381,7 @@ DEPENDENCIES:
   - google_sign_in_web (from `.symlinks/plugins/google_sign_in_web/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - stripe_payment (from `.symlinks/plugins/stripe_payment/ios`)
 
 SPEC REPOS:
   trunk:
@@ -410,6 +415,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - Stripe
 
 EXTERNAL SOURCES:
   apple_sign_in:
@@ -444,6 +450,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
+  stripe_payment:
+    :path: ".symlinks/plugins/stripe_payment/ios"
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -492,6 +500,8 @@ SPEC CHECKSUMS:
   path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  Stripe: 5afd38a520f7a1a16b609127165d517fa9f7de32
+  stripe_payment: 1baf1bbf556f7a35c210dc9e2eccf2075947b6be
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

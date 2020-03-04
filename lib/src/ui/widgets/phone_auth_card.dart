@@ -17,15 +17,13 @@ class PhoneAuthCard extends StatelessWidget {
   Widget _dialogContent(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: Container(
-        child: PinInputTextField(
-          keyboardType: TextInputType.phone,
-          controller: context.provider<AuthScreenProvider>().otpController,
-          autoFocus: true,
-          decoration: UnderlineDecoration(
-            color: Colors.redAccent,
-            enteredColor: Colors.greenAccent,
-          ),
+      child: PinInputTextField(
+        keyboardType: TextInputType.phone,
+        controller: context.provider<AuthScreenProvider>().otpController,
+        autoFocus: true,
+        decoration: UnderlineDecoration(
+          color: Colors.redAccent,
+          enteredColor: Colors.greenAccent,
         ),
       ),
     );
@@ -39,8 +37,8 @@ class PhoneAuthCard extends StatelessWidget {
       await authScreenProvider.signInWithOTP(verificationId: verificationId);
       context.provider<AuthScreenProvider>().otpController.clear();
       //* need to find a better way instead of this to pop two screens
-      Navigator.pop(context);
-      Navigator.pop(context);
+      context.pop();
+      context.pop();
     } catch (e) {
       PlatformExceptionAlertDialog(
         title: authScreenProvider.authTypeSignUp

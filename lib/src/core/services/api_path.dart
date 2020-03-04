@@ -8,7 +8,7 @@ class ApiPath {
   static String cartItem(
           {@required String userId, @required String cartItemId}) =>
       'users/$userId/cart/$cartItemId';
-//   static String orders({@required String userId}) => 'users/$userId/orders';
+  static String orders({@required String userId}) => 'users/$userId/orders';
 //   static String orderItem(
 //           {@required String userId, @required String orderItemId}) =>
 //       'users/$userId/orders/$orderItemId';

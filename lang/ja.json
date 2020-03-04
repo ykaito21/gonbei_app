@@ -32,6 +32,7 @@
   "buy": "購入",
   "isAdded": "を追加しました",
   "isRemoved": "を削除しました",
+  "orderCode": "オーダー番号",
 
   "appTitleFirst": "献立",
   "appTitleSecond": "ス\nス",
@@ -55,6 +56,8 @@
   "cancel": "キャンセル",
   "error": "エラー",
   "send": "送信",
+  "confirm": "確認",
+
   "alertDeleteTitle": "を削除しますか",
   "questionMark": "？",
   "alertDeleteContentCartItem": "カートからこのアイテムを削除します。",

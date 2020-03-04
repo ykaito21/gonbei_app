@@ -29,7 +29,7 @@ class ProductModel extends Equatable {
     );
   }
 
-  // Map<String, dynamic> toMap() {
+  // Map<String, dynamic> toMapForFirestore() {
   //   return {
   //     // "id": id,
   //     "productId": id,

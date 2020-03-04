@@ -12,12 +12,14 @@ class PlatformAlertDialog extends PlatformWidget {
   final String content;
   final String defaultActionText;
   final String cancelActionText;
+  final Widget optionalContent;
 
   PlatformAlertDialog({
     @required this.title,
     @required this.content,
     @required this.defaultActionText,
     this.cancelActionText,
+    this.optionalContent,
   })  : assert(title != null),
         assert(content != null),
         assert(defaultActionText != null);
@@ -38,7 +40,7 @@ class PlatformAlertDialog extends PlatformWidget {
   Widget buildCupertinoWidget(BuildContext context) {
     return CupertinoAlertDialog(
       title: Text(title),
-      content: Text(content),
+      content: optionalContent ?? Text(content),
       actions: _buildActions(context),
     );
   }
@@ -47,7 +49,7 @@ class PlatformAlertDialog extends PlatformWidget {
   Widget buildMaterialWidget(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(content),
+      content: optionalContent ?? Text(content),
       actions: _buildActions(context),
     );
   }
