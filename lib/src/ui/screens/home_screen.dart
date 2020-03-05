@@ -1,15 +1,12 @@
 import 'package:badges/badges.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gonbei_app/src/core/models/cart_model.dart';
-import 'package:gonbei_app/src/core/providers/cart_provider.dart';
-
+import '../../core/models/cart_model.dart';
+import '../../core/providers/cart_provider.dart';
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_provider.dart';
 import '../global/routes/route_generator.dart';
 import '../global/extensions.dart';
-import '../shared/widgets/stream_wrapper.dart';
 import 'cart_screen.dart';
 import 'product_screen.dart';
 
@@ -37,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(context.provider<FirebaseUser>());
     final cartProvider = context.provider<CartProvider>();
     return WillPopScope(
       onWillPop: () async =>

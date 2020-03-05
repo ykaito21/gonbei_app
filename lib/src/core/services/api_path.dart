@@ -14,11 +14,11 @@ class ApiPath {
 //       'users/$userId/orders/$orderItemId';
 //   static String userAvatar({@required userId}) => 'users/$userId/avatar.jpg';
 
-// // Stripe
-//   static String stripePaymentMethod(
-//           {@required String userId, @required String paymentMethodId}) =>
-//       'stripe/$userId/paymentMethods/$paymentMethodId';
+// Stripe
+  // static String stripePaymentMethod(
+  //         {@required String userId, @required String paymentMethodId}) =>
+  //     'stripe/$userId/paymentMethods/$paymentMethodId';
 //   static String stripeSources({@required String userId}) =>
 //       'stripe/$userId/sources';
-//   static String stripeInfo({@required String userId}) => 'stripe/$userId';
+  static String stripeInfo({@required String userId}) => 'stripe/$userId';
 }

@@ -34,7 +34,7 @@ class PhoneAuthCard extends StatelessWidget {
     final authScreenProvider = context.provider<AuthScreenProvider>();
     context.unfocus;
     try {
-      await authScreenProvider.signInWithOTP(verificationId: verificationId);
+      await authScreenProvider.submitOTP(verificationId);
       context.provider<AuthScreenProvider>().otpController.clear();
       //* need to find a better way instead of this to pop two screens
       context.pop();

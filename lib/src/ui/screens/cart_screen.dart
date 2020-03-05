@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gonbei_app/src/core/models/cart_model.dart';
+import 'package:gonbei_app/src/core/providers/base_provider.dart';
+import 'package:gonbei_app/src/core/providers/payment_provider.dart';
 import 'package:gonbei_app/src/ui/global/style_list.dart';
 import 'package:gonbei_app/src/ui/shared/widgets/stream_wrapper.dart';
 import 'package:gonbei_app/src/ui/shared/widgets/unauthenticated_card.dart';
@@ -53,64 +55,44 @@ class CartScreen extends StatelessWidget {
     }
   }
 
-  Future<void> _onPressedBuy(BuildContext context) async {
+  Future<void> _onPressedBuy(BuildContext context, CartProvider cartProvider,
+      PaymentProvider paymentProvider) async {
     try {
-      final code = await context.provider<CartProvider>().convertToOrder();
-      PlatformAlertDialog(
-        title: context.translate('orderCode'),
-        content: '',
-        defaultActionText: context.translate('confirm'),
-        optionalContent: Container(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Text(
-            code.toString(),
-            style: StyleList.mediumBoldTextStyle,
+      if (await paymentProvider.checkPaymentMethod() ?? false) {
+        final code = await cartProvider.convertToOrder();
+        PlatformAlertDialog(
+          title: context.translate('orderCode'),
+          content: '',
+          defaultActionText: context.translate('confirm'),
+          optionalContent: Container(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Text(
+              code.toString(),
+              style: StyleList.mediumBoldTextStyle,
+            ),
           ),
-        ),
-      ).show(context);
+        ).show(context);
+      } else {
+        final result = await paymentProvider.addCardToStripe();
+        PlatformAlertDialog(
+          title: result
+              ? context.translate('success')
+              : context.translate('failed'),
+          content: result
+              ? context.translate('addingCardSuccess')
+              : context.translate('addingCardFailed'),
+          defaultActionText: 'OK',
+        ).show(context);
+      }
     } catch (e) {
-      PlatformExceptionAlertDialog(
-        title: context.translate('error'),
-        exception: e,
-        context: context,
-      ).show(context);
+      if (e.code != 'cancelled')
+        PlatformExceptionAlertDialog(
+          title: context.translate('error'),
+          exception: e,
+          context: context,
+        ).show(context);
     }
   }
-
-  // // stripe card check
-  // Future<void> _addCard(
-  //     {BuildContext context, PaymentProvider paymentProvider}) async {
-  //   try {
-  //     //TODO maybe add progress indicator until get result
-  //     final bool result = await paymentProvider.addCardToStripe();
-  //     PlatformAlertDialog(
-  //       title: result ? '登録完了' : '登録失敗',
-  //       content: result ? 'カードを登録しました' : 'カードを登録できませんでした',
-  //       defaultActionText: 'OK',
-  //     ).show(context);
-  //   } catch (e) {
-  //     if (e.code != 'cancelled') {
-  //       PlatformExceptionAlertDialog(
-  //         title: 'エラー',
-  //         exception: e,
-  //       ).show(context);
-  //     }
-  //   }
-  // }
-
-  // Future<bool> _checkCard(
-  //     {BuildContext context, PaymentProvider paymentProvider}) async {
-  //   bool confirmPaymentMethod = false;
-  //   try {
-  //     confirmPaymentMethod = await paymentProvider.checkPaymentMethod();
-  //   } catch (e) {
-  //     PlatformExceptionAlertDialog(
-  //       title: 'エラー',
-  //       exception: e,
-  //     ).show(context);
-  //   }
-  //   return confirmPaymentMethod;
-  // }
 
   Future<bool> _confirmDismiss(BuildContext context, String productName) async {
     return await PlatformAlertDialog(
@@ -124,6 +106,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = context.provider<CartProvider>();
+    final paymentProvider = context.provider<PaymentProvider>();
     return Scaffold(
       appBar: BaseAppBar(),
       body: context.provider<FirebaseUser>() == null
@@ -138,10 +121,10 @@ class CartScreen extends StatelessWidget {
                       context.translate('emptyCart'),
                       StyleList.baseSubtitleTextStyle);
                 return ModalProgressHUD(
-                  // inAsyncCall:
-                  //     Provider.of<PaymentProvider>(context).viewState ==
-                  //         ViewState.Busy,
-                  inAsyncCall: false,
+                  inAsyncCall: context
+                          .provider<PaymentProvider>(listen: true)
+                          .viewState ==
+                      ViewState.Busy,
                   child: Column(
                     children: <Widget>[
                       Expanded(
@@ -225,7 +208,9 @@ class CartScreen extends StatelessWidget {
                             BaseButton(
                               buttonText: context.translate('buy'),
                               onPressed: () {
-                                _onPressedBuy(context);
+                                _onPressedBuy(
+                                    context, cartProvider, paymentProvider);
+                                //todo delete
                                 // final bool confirmCard = await _checkCard(
                                 //     context: context,
                                 //     paymentProvider: _paymentProvider);
