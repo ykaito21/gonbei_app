@@ -49,8 +49,11 @@
   "needPermission": "アクセルの許可が必要です",
   "pleaseAllowAccess": "アプリの設定からアクセスを許可してください。",
 
-  "logOut": "ログアウト",
-  "WantToLogout": "ログアウトしますか？",
+  "signOut": "ログアウト",
+  "wantToSignOut": "ログアウトしますか？",
+
+  "addCard": "カードを追加",
+  "noPaymentMethod": "支払い方法がありません",
 
   "appTitleFirst": "献立",
   "appTitleSecond": "ス\nス",

@@ -86,7 +86,7 @@ class ProfileEditScreen extends StatelessWidget {
       defaultActionText: context.translate('yes'),
       cancelActionText: context.translate('no'),
     ).show(context);
-    if (confirmation)
+    if (confirmation) {
       try {
         await profileEditScreenProvider.resetProfile();
         context.pop();
@@ -97,6 +97,7 @@ class ProfileEditScreen extends StatelessWidget {
           context: context,
         ).show(context);
       }
+    }
   }
 
   @override

@@ -23,10 +23,13 @@ class CartProvider extends BaseProvider {
   set currentUser(FirebaseUser value) {
     if (_currentUser != value) {
       _currentUser = value;
-      if (_currentUser != null)
+      if (_currentUser != null) {
         _initCart()
             .listen(_cartSubject.add)
             .onError((error) => _cartSubject.add([]));
+      } else {
+        _cartSubject.add([]);
+      }
     }
   }
 

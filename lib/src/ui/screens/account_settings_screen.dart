@@ -11,16 +11,18 @@ import '../shared/platform/platform_exception_alert_dialog.dart';
 class AccountSettingScreen extends StatelessWidget {
   const AccountSettingScreen({Key key}) : super(key: key);
 
-  Future<void> _signOut(context) async {
+  Future<void> _signOut(BuildContext context) async {
     final bool confirmation = await PlatformAlertDialog(
-      title: context.translate('logOut'),
-      content: context.translate('WantToLogout'),
+      title: context.translate('signOut'),
+      content: context.translate('wantToSignOut'),
       defaultActionText: context.translate('yes'),
       cancelActionText: context.translate('cancel'),
     ).show(context);
     try {
-      if (confirmation) await context.provider<AuthProvider>().signOut();
-      context.pop();
+      if (confirmation) {
+        await context.provider<AuthProvider>().signOut();
+        context.pop();
+      }
     } catch (e) {
       PlatformExceptionAlertDialog(
         title: context.translate('error'),
@@ -52,8 +54,8 @@ class AccountSettingScreen extends StatelessWidget {
               onPressed: () => themeProvider.changeTheme(),
             ),
             BaseButton(
-              buttonText: context.translate('logOut'),
-              onPressed: () => _signOut(context),
+              buttonText: context.translate('signOut'),
+              onPressed: () async => await _signOut(context),
             ),
           ],
         ),

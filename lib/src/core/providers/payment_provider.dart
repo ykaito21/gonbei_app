@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gonbei_app/src/core/models/payment_model.dart';
 import 'package:gonbei_app/src/core/services/database_service.dart';
 
 import '../services/api_path.dart';
@@ -30,38 +32,25 @@ class PaymentProvider extends BaseProvider {
     }
   }
 
-  //* for addStripePaymentSource function
-  // Future<void> addCardToStripe() async {
-  //   try {
-  //     final String paymentMethodId = await _paymentService.addPaymentMethod();
-  //     _dbService.createDocument(
-  //         path: ApiPath.stripePaymentMethod(
-  //             userId: _currentUser.uid, paymentMethodId: paymentMethodId));
-  //   } catch (e) {
-  //     print(e);
-  //     rethrow;
-  //   }
-  // }
+  Stream<List<PaymentModel>> streamSources() {
+    if (_currentUser != null) {
+      final Stream<QuerySnapshot> res = _dbService.streamDataCollection(
+        path: ApiPath.stripeSources(userId: _currentUser.uid),
+      );
+      return res.map(
+        (list) {
+          final List<PaymentModel> sources = list.documents
+              .map(
+                (doc) => PaymentModel.fromFirestore(doc.data, doc.documentID),
+              )
+              .toList();
 
-  // Stream<List<PaymentInfo>> streamSources() {
-  //   if (_currentUser != null) {
-  //     final Stream<QuerySnapshot> res = _dbService.streamDataCollection(
-  //       path: ApiPath.stripeSources(userId: _currentUser.uid),
-  //     );
-  //     return res.map(
-  //       (list) {
-  //         final List<PaymentInfo> sources = list.documents
-  //             .map(
-  //               (doc) => PaymentInfo.fromFirestore(doc.data, doc.documentID),
-  //             )
-  //             .toList();
-
-  //         return sources;
-  //       },
-  //     );
-  //   }
-  //   return null;
-  // }
+          return sources;
+        },
+      );
+    }
+    return null;
+  }
 
   // check current user added card or not
   //TODO maybe need to support multiple cards and delete card

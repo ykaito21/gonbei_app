@@ -18,7 +18,7 @@ class ApiPath {
   // static String stripePaymentMethod(
   //         {@required String userId, @required String paymentMethodId}) =>
   //     'stripe/$userId/paymentMethods/$paymentMethodId';
-//   static String stripeSources({@required String userId}) =>
-//       'stripe/$userId/sources';
+  static String stripeSources({@required String userId}) =>
+      'stripe/$userId/sources';
   static String stripeInfo({@required String userId}) => 'stripe/$userId';
 }

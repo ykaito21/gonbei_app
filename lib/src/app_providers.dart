@@ -17,7 +17,10 @@ List<SingleChildWidget> providers = [
 ];
 
 List<SingleChildWidget> independentProviders = [
-  StreamProvider<FirebaseUser>.value(value: AuthProvider().user),
+  Provider<AuthProvider>(
+    create: (_) => AuthProvider.instance,
+  ),
+  StreamProvider<FirebaseUser>.value(value: AuthProvider.instance.user),
   ChangeNotifierProvider<CategoryProvider>(
     create: (_) => CategoryProvider(),
   ),

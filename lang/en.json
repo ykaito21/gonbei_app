@@ -49,8 +49,11 @@
   "needPermission": "Need Permission",
   "pleaseAllowAccess": "Please change app settings to allow access.",
 
-  "logOut": "Log Out",
-  "WantToLogout": "Do you want to log out?",
+  "signOut": "Sign Out",
+  "wantToSignOut": "Do you want to sign out?",
+
+  "addCard": "Add Card",
+  "noPaymentMethod": "No Payment Method",
 
   "appTitleFirst": "What",
   "appTitleSecond": "2\n2",

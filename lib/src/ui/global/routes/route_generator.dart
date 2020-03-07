@@ -6,6 +6,7 @@ import '../../screens/auth_screen.dart';
 import '../../screens/product_detail_screen.dart';
 import '../../screens/profile_edit_screen.dart';
 import '../../screens/account_settings_screen.dart';
+import '../../screens/payment_methods_screen.dart';
 
 import '../style_list.dart';
 import '../extensions.dart';
@@ -39,10 +40,10 @@ class RouteGenerator {
       //   return MaterialPageRoute(
       //     builder: (context) => OrderRecordScreen(),
       //   );
-      // case RoutePath.paymentInfoScreen:
-      //   return MaterialPageRoute(
-      //     builder: (context) => PaymentInfoScreen(),
-      //   );
+      case RoutePath.paymentInfoScreen:
+        return MaterialPageRoute(
+          builder: (context) => PaymentMethodsScreen(),
+        );
       case RoutePath.profileEditScreen:
         return MaterialPageRoute(
           builder: (context) => ProfileEditScreen(),
