@@ -7,6 +7,7 @@ import 'core/providers/category_provider.dart';
 import 'core/providers/product_provider.dart';
 import 'core/providers/cart_provider.dart';
 import 'core/providers/payment_provider.dart';
+import 'core/providers/theme_provider.dart';
 import 'core/providers/user_provider.dart';
 
 List<SingleChildWidget> providers = [
@@ -22,6 +23,9 @@ List<SingleChildWidget> independentProviders = [
   ),
   ChangeNotifierProvider<ProductProvider>(
     create: (_) => ProductProvider(),
+  ),
+  ChangeNotifierProvider<ThemeProvider>(
+    create: (context) => ThemeProvider(),
   ),
 ];
 

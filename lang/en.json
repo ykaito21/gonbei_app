@@ -49,6 +49,9 @@
   "needPermission": "Need Permission",
   "pleaseAllowAccess": "Please change app settings to allow access.",
 
+  "logOut": "Log Out",
+  "WantToLogout": "Do you want to log out?",
+
   "appTitleFirst": "What",
   "appTitleSecond": "2\n2",
   "appTitleThird": "Eat",
@@ -74,12 +77,13 @@
   "confirm": "Confirm",
   "success": "Success",
   "failed": "Failed",
-  "reset": "Reset",
+  "light": "Light",
+  "dark": "Dark",
 
   "alertDeleteTitle": "Delete",
   "questionMark": "?",
   "alertDeleteContentCartItem": "this item will be deleted from your cart.",
-  "alertDeleteProfile": "your profile will be deleted from app.",
+  "alertDeleteProfile": "Your profile will be deleted from app.",
   "yes": "Yes",
   "no": "No",
   "wasDeleted": "was successfly deleted.",

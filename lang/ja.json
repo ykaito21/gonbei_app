@@ -49,6 +49,9 @@
   "needPermission": "アクセルの許可が必要です",
   "pleaseAllowAccess": "アプリの設定からアクセスを許可してください。",
 
+  "logOut": "ログアウト",
+  "WantToLogout": "ログアウトしますか？",
+
   "appTitleFirst": "献立",
   "appTitleSecond": "ス\nス",
   "appTitleThird": "ロット",
@@ -74,6 +77,8 @@
   "confirm": "確認",
   "success": "成功",
   "failed": "失敗",
+  "light": "ライト",
+  "dark": "ダーク",
 
   "alertDeleteTitle": "を削除しますか",
   "questionMark": "？",

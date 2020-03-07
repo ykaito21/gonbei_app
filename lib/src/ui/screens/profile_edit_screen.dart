@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../core/models/user_model.dart';
 import '../../core/providers/user_provider.dart';
 import '../../core/providers/profile_edit_screen_provider.dart';
 
@@ -18,12 +17,7 @@ import '../shared/widgets/base_button.dart';
 import '../widgets/avatar_display.dart';
 
 class ProfileEditScreen extends StatelessWidget {
-  final UserModel user;
-  const ProfileEditScreen({
-    Key key,
-    @required this.user,
-  })  : assert(user != null),
-        super(key: key);
+  const ProfileEditScreen({Key key}) : super(key: key);
 
   Future<ImageSource> _chooseSource(BuildContext context) async {
     final res = await PlatformBottomSheet(
@@ -107,6 +101,7 @@ class ProfileEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // could be pass through as normal valiable
     final currentUser = context.provider<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(

@@ -5,6 +5,7 @@ import '../../screens/home_screen.dart';
 import '../../screens/auth_screen.dart';
 import '../../screens/product_detail_screen.dart';
 import '../../screens/profile_edit_screen.dart';
+import '../../screens/account_settings_screen.dart';
 
 import '../style_list.dart';
 import '../extensions.dart';
@@ -30,10 +31,10 @@ class RouteGenerator {
           fullscreenDialog: true,
           builder: (context) => AuthScreen(),
         );
-      // case RoutePath.accountSettingScreen:
-      //   return MaterialPageRoute(
-      //     builder: (context) => AccountSettingScreen(),
-      //   );
+      case RoutePath.accountSettingScreen:
+        return MaterialPageRoute(
+          builder: (context) => AccountSettingScreen(),
+        );
       // case RoutePath.orderRecordScreen:
       //   return MaterialPageRoute(
       //     builder: (context) => OrderRecordScreen(),
