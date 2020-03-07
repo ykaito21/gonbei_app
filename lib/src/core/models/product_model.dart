@@ -16,7 +16,12 @@ class ProductModel extends Equatable {
     @required this.imageUrl,
     @required this.price,
     @required this.categoryId,
-  });
+  })  : assert(id != null),
+        assert(name != null),
+        assert(description != null),
+        assert(imageUrl != null),
+        assert(price != null),
+        assert(categoryId != null);
 
   factory ProductModel.fromFirestore(Map snapshot, String id) {
     return ProductModel(

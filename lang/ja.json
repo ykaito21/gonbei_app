@@ -36,6 +36,19 @@
   "addingCardSuccess": "クレジットカードを登録しました",
   "addingCardFailed": "クレジットカードを登録できませんでした",
 
+  "gonbei": "権兵衛",
+  "editProfile": "プロフィール変更",
+  "orderHistory": "注文履歴",
+  "paymentMethods": "支払い方法",
+  "accountSettings": "アカウント管理",
+  "username": "ユーザーネーム",
+  "profile": "プロフィール",
+  "editProfilePicture": "プロフィール写真を変更",
+  "takePhoto": "写真を撮る",
+  "photoLibrary": "ライブラリから選択",
+  "needPermission": "アクセルの許可が必要です",
+  "pleaseAllowAccess": "アプリの設定からアクセスを許可してください。",
+
   "appTitleFirst": "献立",
   "appTitleSecond": "ス\nス",
   "appTitleThird": "ロット",
@@ -65,6 +78,8 @@
   "alertDeleteTitle": "を削除しますか",
   "questionMark": "？",
   "alertDeleteContentCartItem": "カートからこのアイテムを削除します。",
+  "alertDeleteProfile": "アプリからプロフィールデータを削除します。",
+
   "yes": "はい",
   "no": "いいえ",
   "wasDeleted": "を削除しました。",

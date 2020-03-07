@@ -12,7 +12,9 @@ class CartModel extends Equatable {
     @required this.id,
     @required this.quantity,
     @required this.productItem,
-  });
+  })  : assert(id != null),
+        assert(quantity != null),
+        assert(productItem != null);
 
   factory CartModel.fromFirestore(Map snapshot, String id) {
     return CartModel(

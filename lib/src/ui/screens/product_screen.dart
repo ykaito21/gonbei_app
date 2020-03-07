@@ -26,16 +26,12 @@ class ProductScreen extends StatelessWidget {
   }
 
   Widget _currentView(BuildContext context) {
-    final categoryProviderViewState =
-        context.provider<CategoryProvider>(listen: true).viewState;
-    final productProviderViewState =
-        context.provider<ProductProvider>(listen: true).viewState;
-    if (categoryProviderViewState == ViewState.Error ||
-        productProviderViewState == ViewState.Error)
+    final categoryProvider = context.provider<CategoryProvider>(listen: true);
+    final productProvider = context.provider<ProductProvider>(listen: true);
+    if (categoryProvider.isError || productProvider.isError)
       return StyleList.errorViewState(
           context.translate('error'), StyleList.baseSubtitleTextStyle);
-    if (categoryProviderViewState != ViewState.Retrieved ||
-        productProviderViewState != ViewState.Retrieved)
+    if (!categoryProvider.isRetrieved || !productProvider.isRetrieved)
       return StyleList.loadingViewState();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

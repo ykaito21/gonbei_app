@@ -118,7 +118,7 @@ class ProductDetailScreen extends StatelessWidget {
                   builder: (context, productDetailScreenProvider, child) {
                     return BaseButton(
                       buttonText: context.translate('addToCart'),
-                      onPressed: () async => await _onPressedAddToCart(
+                      onPressed: () => _onPressedAddToCart(
                           context, productItem, productDetailScreenProvider),
                     );
                   },

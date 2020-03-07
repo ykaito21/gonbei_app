@@ -7,19 +7,19 @@ import 'package:provider/provider.dart';
 import '../../core/providers/auth_screen_provider.dart';
 import '../../core/providers/base_provider.dart';
 
-import '../shared/widgets/auth_button.dart';
-import '../shared/widgets/base_flat_button.dart';
-import '../widgets/email_auth_card.dart';
-import '../widgets/phone_auth_card.dart';
-import '../shared/platform/platform_exception_alert_dialog.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
+import '../shared/widgets/auth_button.dart';
+import '../shared/widgets/base_flat_button.dart';
+import '../shared/platform/platform_exception_alert_dialog.dart';
+import '../widgets/email_auth_card.dart';
+import '../widgets/phone_auth_card.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key key}) : super(key: key);
 
-  Future<void> _onPressedAuth(BuildContext context, String selectedAuth) async {
-    final authScreenProvider = context.provider<AuthScreenProvider>();
+  Future<void> _onPressedAuth(BuildContext context, String selectedAuth,
+      AuthScreenProvider authScreenProvider) async {
     // final sucessSnackBarText = authScreenProvider.authTypeSignUp
     //     ? context.translate('signUpSuccess')
     //     : context.translate('logInSuccess');
@@ -68,7 +68,7 @@ class AuthScreen extends StatelessWidget {
               ),
             ),
             body: ModalProgressHUD(
-              inAsyncCall: authScreenProvider.viewState == ViewState.Busy,
+              inAsyncCall: authScreenProvider.isBusy,
               child: Padding(
                 padding: StyleList.horizontalPadding10,
                 child: Column(
@@ -79,7 +79,8 @@ class AuthScreen extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           AuthButton(
-                            onPressed: () => _onPressedAuth(context, 'Google'),
+                            onPressed: () => _onPressedAuth(
+                                context, 'Google', authScreenProvider),
                             buttonText: authTypeSignUp
                                 ? context.translate('signUpWithGoogle')
                                 : context.translate('logInWithGoogle'),
@@ -90,7 +91,8 @@ class AuthScreen extends StatelessWidget {
                           ),
                           if (Platform.isIOS)
                             AuthButton(
-                              onPressed: () => _onPressedAuth(context, 'Apple'),
+                              onPressed: () => _onPressedAuth(
+                                  context, 'Apple', authScreenProvider),
                               buttonText: authTypeSignUp
                                   ? context.translate('signUpWithApple')
                                   : context.translate('logInWithApple'),

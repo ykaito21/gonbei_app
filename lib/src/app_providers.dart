@@ -7,6 +7,7 @@ import 'core/providers/category_provider.dart';
 import 'core/providers/product_provider.dart';
 import 'core/providers/cart_provider.dart';
 import 'core/providers/payment_provider.dart';
+import 'core/providers/user_provider.dart';
 
 List<SingleChildWidget> providers = [
   ...independentProviders,
@@ -25,14 +26,18 @@ List<SingleChildWidget> independentProviders = [
 ];
 
 List<SingleChildWidget> dependentProviders = [
-  ProxyProvider<FirebaseUser, CartProvider>(
+  ChangeNotifierProxyProvider<FirebaseUser, CartProvider>(
     create: (_) => CartProvider(),
     update: (_, user, cartProvier) => cartProvier..currentUser = user,
-    dispose: (_, cartProvider) => cartProvider.dispose(),
   ),
   ChangeNotifierProxyProvider<FirebaseUser, PaymentProvider>(
     create: (_) => PaymentProvider(),
     update: (_, user, paymentProvier) => paymentProvier..currentUser = user,
+  ),
+  ProxyProvider<FirebaseUser, UserProvider>(
+    create: (_) => UserProvider(),
+    update: (_, user, userProvider) => userProvider..currentUser = user,
+    dispose: (_, userProvider) => userProvider.dispose(),
   ),
 ];
 

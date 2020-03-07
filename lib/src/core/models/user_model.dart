@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class CategoryModel extends Equatable {
+class UserModel extends Equatable {
   final String id;
   final String name;
   final String imageUrl;
 
-  CategoryModel({
+  UserModel({
     @required this.id,
     @required this.name,
     @required this.imageUrl,
@@ -14,12 +14,21 @@ class CategoryModel extends Equatable {
         assert(name != null),
         assert(imageUrl != null);
 
-  factory CategoryModel.fromFirestore(Map snapshot, String id) {
-    return CategoryModel(
+  factory UserModel.fromFirestore(Map snapshot, String id) {
+    return UserModel(
       id: id ?? '',
       name: snapshot['name'] ?? '',
       imageUrl: snapshot['imageUrl'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toMapForFirestore() {
+    return {
+      // "id": id,
+      "name": name,
+      "imageUrl": imageUrl,
+      //  "createdAt": DateTime.now(),
+    };
   }
 
   @override

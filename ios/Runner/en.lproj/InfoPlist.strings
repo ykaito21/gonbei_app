@@ -6,5 +6,5 @@
   Copyright © 2020 The Chromium Authors. All rights reserved.
 */
 
-CFBundleDisplayName = "Omusubi Gonbei";
-CFBundleName = "Omusubi Gonbei";
+CFBundleDisplayName = "Gonbei";
+CFBundleName = "Gonbei";

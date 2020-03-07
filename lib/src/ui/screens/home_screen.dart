@@ -9,6 +9,7 @@ import '../global/routes/route_generator.dart';
 import '../global/extensions.dart';
 import 'cart_screen.dart';
 import 'product_screen.dart';
+import 'user_profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final _navigators = [
+    GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
   ];
@@ -50,6 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   return ProductScreen();
                 case 1:
                   return CartScreen();
+                case 2:
+                  return UserProfileScreen();
                 default:
                   return Container();
               }
@@ -84,6 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Icon(Icons.shopping_cart);
                 },
               ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
             ),
           ],
           onTap: (index) {

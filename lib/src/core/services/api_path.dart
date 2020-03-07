@@ -12,7 +12,7 @@ class ApiPath {
 //   static String orderItem(
 //           {@required String userId, @required String orderItemId}) =>
 //       'users/$userId/orders/$orderItemId';
-//   static String userAvatar({@required userId}) => 'users/$userId/avatar.jpg';
+  static String userAvatar({@required userId}) => 'users/$userId/avatar.jpg';
 
 // Stripe
   // static String stripePaymentMethod(

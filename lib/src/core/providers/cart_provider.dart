@@ -10,8 +10,9 @@ import '../models/order_model.dart';
 import '../models/product_model.dart';
 import '../services/database_service.dart';
 import '../services/api_path.dart';
+import 'base_provider.dart';
 
-class CartProvider {
+class CartProvider extends BaseProvider {
   FirebaseUser _currentUser;
   final _dbService = DatabaseService.instance;
   final _cartSubject = BehaviorSubject<List<CartModel>>.seeded([]);
@@ -29,8 +30,10 @@ class CartProvider {
     }
   }
 
+  @override
   dispose() {
     _cartSubject.close();
+    super.dispose();
   }
 
   int totalPrice() {
@@ -48,24 +51,24 @@ class CartProvider {
   }
 
   Stream<List<CartModel>> _initCart() {
-    if (_currentUser != null) {
-      final Stream<QuerySnapshot> res = _dbService.streamDataCollection(
-        path: ApiPath.cart(userId: _currentUser.uid),
-        orderBy: 'createdAt',
-        descending: true,
-      );
-      return res.map(
-        (list) {
-          final List<CartModel> cart = list.documents
-              .map(
-                (doc) => CartModel.fromFirestore(doc.data, doc.documentID),
-              )
-              .toList();
-          return cart;
-        },
-      );
-    }
-    return null;
+    // if (_currentUser != null) {
+    final Stream<QuerySnapshot> res = _dbService.streamDataCollection(
+      path: ApiPath.cart(userId: _currentUser.uid),
+      orderBy: 'createdAt',
+      descending: true,
+    );
+    return res.map(
+      (list) {
+        final List<CartModel> cart = list.documents
+            .map(
+              (doc) => CartModel.fromFirestore(doc.data, doc.documentID),
+            )
+            .toList();
+        return cart;
+      },
+    );
+    // }
+    // return null;
   }
 
   Future<void> addCartItem(
@@ -141,6 +144,7 @@ class CartProvider {
 
 //* can be improve to use transaction and batch
   Future<int> convertToOrder() async {
+    setViewState(ViewState.Busy);
     final code = random.nextInt(9000) + 1000;
     final newOrder = OrderModel(
       id: 'NEW_ORDER',
@@ -164,9 +168,11 @@ class CartProvider {
           .toList();
       // remove all cart items with transaction
       await _dbService.removeAllDocument(pathList: pathList);
+      setViewState(ViewState.Retrieved);
       return code;
     } catch (e) {
       print(e);
+      setViewState(ViewState.Error);
       rethrow;
     }
   }

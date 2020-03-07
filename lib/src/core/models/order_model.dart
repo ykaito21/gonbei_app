@@ -38,7 +38,14 @@ class OrderModel extends Equatable {
     @required this.date,
     @required this.status,
     @required this.cart,
-  });
+  })  : assert(id != null),
+        assert(price != null),
+        assert(quantity != null),
+        assert(code != null),
+        assert(quantity != null),
+        assert(date != null),
+        assert(status != null),
+        assert(cart != null);
 
   OrderModel.fromFirestore(Map snapshot, String id)
       : id = id ?? '',
