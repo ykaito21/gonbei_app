@@ -84,7 +84,7 @@ class ProfileEditScreen extends StatelessWidget {
           context.translate('profile'), 'alertDeleteTitle'),
       content: context.translate('alertDeleteProfile'),
       defaultActionText: context.translate('yes'),
-      cancelActionText: context.translate('no'),
+      cancelActionText: context.translate('cancel'),
     ).show(context);
     if (confirmation) {
       try {

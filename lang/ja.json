@@ -55,6 +55,18 @@
   "addCard": "カードを追加",
   "noPaymentMethod": "支払い方法がありません",
 
+  "noOrder": "オーダーがありません",
+  "status": "ステータス",
+  "PENDING": "確認中",
+  "SUCCEEDED": "注文完了",
+  "CANCELED": "キャンセル",
+  "REFUNDED": "返金完了",
+  "orderTotal": "支払総額",
+  "quantity": "注文数",
+  "orderDetails": "注文内容",
+  "isCanceled": "をキャンセルしました",
+  "alertCancelContentOrder": "注文をキャンセルします。",
+
   "appTitleFirst": "献立",
   "appTitleSecond": "ス\nス",
   "appTitleThird": "ロット",

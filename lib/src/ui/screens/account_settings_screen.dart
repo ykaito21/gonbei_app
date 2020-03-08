@@ -8,8 +8,8 @@ import '../shared/platform/platform_alert_dialog.dart';
 import '../shared/widgets/base_button.dart';
 import '../shared/platform/platform_exception_alert_dialog.dart';
 
-class AccountSettingScreen extends StatelessWidget {
-  const AccountSettingScreen({Key key}) : super(key: key);
+class AccountSettingsScreen extends StatelessWidget {
+  const AccountSettingsScreen({Key key}) : super(key: key);
 
   Future<void> _signOut(BuildContext context) async {
     final bool confirmation = await PlatformAlertDialog(

@@ -115,7 +115,11 @@ exports.createStripeCharge = functions.firestore
           payment_method: paymentMethodId
         }
       );
-      await snapshot.ref.set(confirmFromStripe, { merge: true });
+      const chargeData = {
+        confirmFromStripe
+      };
+
+      await snapshot.ref.set(chargeData, { merge: true });
       console.log("SUCCESS: create stripe charge");
       return;
     } catch (error) {
@@ -147,7 +151,8 @@ exports.refundStripeCharge = functions.firestore
         console.log("NOT REFUND REQUEST: refund stripe charge");
         return;
       }
-      const paymentIntentId = assertData(data, "id");
+      const chargeData = assertData(data, "confirmFromStripe");
+      const paymentIntentId = assertData(chargeData, "id");
       const paymentData = { payment_intent: paymentIntentId };
       const resFromStripe = await stripe.refunds.create(paymentData);
       // const userId = context.params.userId;

@@ -22,21 +22,21 @@ class ProfileItemList extends StatelessWidget {
             icon: Icons.receipt,
             titleText: context.translate('orderHistory'),
             onTap: () =>
-                Navigator.pushNamed(context, RoutePath.orderRecordScreen),
+                Navigator.pushNamed(context, RoutePath.orderHistoryScreen),
           ),
           _itemTile(
             context: context,
             icon: Icons.payment,
             titleText: context.translate('paymentMethods'),
             onTap: () =>
-                Navigator.pushNamed(context, RoutePath.paymentInfoScreen),
+                Navigator.pushNamed(context, RoutePath.paymentMethodsScreen),
           ),
           _itemTile(
             context: context,
             icon: Icons.settings,
             titleText: context.translate('accountSettings'),
             onTap: () =>
-                Navigator.pushNamed(context, RoutePath.accountSettingScreen),
+                Navigator.pushNamed(context, RoutePath.accountSettingsScreen),
           ),
         ],
       ),
