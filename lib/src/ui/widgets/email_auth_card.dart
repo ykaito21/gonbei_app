@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../../core/providers/auth_screen_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';

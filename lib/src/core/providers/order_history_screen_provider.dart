@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../core/models/order_model.dart';
-import '../../core/services/api_path.dart';
-import '../../core/services/database_service.dart';
+import '../models/order_model.dart';
+import '../services/api_path.dart';
+import '../services/database_service.dart';
 
 class OrderHistoryScreenProvider {
   FirebaseUser _currentUser;

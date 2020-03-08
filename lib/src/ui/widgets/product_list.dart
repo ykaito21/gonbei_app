@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../core/models/product_model.dart';
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_provider.dart';
 import '../../core/providers/product_screen_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
-
 import 'product_card.dart';
 
 class ProductList extends StatelessWidget {

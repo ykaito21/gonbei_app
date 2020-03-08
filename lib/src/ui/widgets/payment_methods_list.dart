@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/models/payment_model.dart';
 import '../../core/providers/payment_provider.dart';
-
 import '../global/extensions.dart';
 import '../global/style_list.dart';
 import '../shared/widgets/stream_wrapper.dart';

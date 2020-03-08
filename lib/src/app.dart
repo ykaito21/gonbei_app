@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
 import 'core/providers/theme_provider.dart';
 import 'ui/global/app_theme.dart';
 import 'ui/global/routes/route_generator.dart';

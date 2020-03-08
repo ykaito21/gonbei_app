@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/models/order_model.dart';
 import '../../core/providers/order_history_screen_provider.dart';
-
 import '../global/extensions.dart';
 import '../global/style_list.dart';
 import '../shared/widgets/stream_wrapper.dart';

@@ -1,10 +1,8 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/subjects.dart';
-
 import '../models/cart_model.dart';
 import '../models/order_model.dart';
 import '../models/product_model.dart';

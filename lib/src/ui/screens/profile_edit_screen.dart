@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../core/providers/user_provider.dart';
 import '../../core/providers/profile_edit_screen_provider.dart';
-
 import '../global/extensions.dart';
 import '../global/style_list.dart';
 import '../shared/platform/platform_alert_dialog.dart';

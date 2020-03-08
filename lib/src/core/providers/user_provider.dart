@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gonbei_app/src/core/models/user_model.dart';
-import 'package:gonbei_app/src/core/services/api_path.dart';
-import 'package:gonbei_app/src/core/services/database_service.dart';
 import 'package:rxdart/rxdart.dart';
+import '../models/user_model.dart';
+import '../services/api_path.dart';
+import '../services/database_service.dart';
 
 class UserProvider {
   FirebaseUser _currentUser;

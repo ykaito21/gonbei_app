@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_screen_provider.dart';
 import '../global/style_list.dart';

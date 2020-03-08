@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/providers/product_detail_screen_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
@@ -31,7 +30,7 @@ class RowQuantityCounter extends StatelessWidget {
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          padding: StyleList.horizontalPadding30,
           child: Consumer<ProductDetailScreenProvider>(
             builder: (context, productDetailScreenProvider, child) {
               return Text(

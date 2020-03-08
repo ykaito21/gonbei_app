@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-
 import '../../core/models/cart_model.dart';
 import '../../core/providers/cart_provider.dart';
 import '../../core/providers/payment_provider.dart';
@@ -69,7 +68,7 @@ class CartList extends StatelessWidget {
           content: '',
           defaultActionText: context.translate('confirm'),
           optionalContent: Container(
-            padding: const EdgeInsets.only(top: 10.0),
+            padding: StyleList.topPadding10,
             child: Text(
               code.toString(),
               style: StyleList.mediumBoldTextStyle,
@@ -121,7 +120,7 @@ class CartList extends StatelessWidget {
                     onDismissed: (direction) =>
                         _onDismissedCartItem(context, cartProvider, cartItem),
                     background: Container(
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: StyleList.rightPadding20,
                       alignment: Alignment.centerRight,
                       color: context.accentColor,
                       child: Column(

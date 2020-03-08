@@ -1,14 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../models/user_model.dart';
-import '../providers/base_provider.dart';
 import '../services/api_path.dart';
 import '../services/database_service.dart';
 import '../services/storage_service.dart';
+import 'base_provider.dart';
 
 class ProfileEditScreenProvider extends BaseProvider {
   final UserModel user;

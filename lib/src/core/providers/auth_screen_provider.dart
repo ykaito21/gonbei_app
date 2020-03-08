@@ -4,7 +4,6 @@ import '../mixins/validation_mixin.dart';
 import '../services/api_path.dart';
 import '../services/database_service.dart';
 import '../services/auth_service.dart';
-
 import 'base_provider.dart';
 
 class AuthScreenProvider extends BaseProvider with ValidationMixin {

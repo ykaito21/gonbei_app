@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 import '../../core/providers/auth_screen_provider.dart';
-
+import '../global/extensions.dart';
+import '../global/style_list.dart';
 import '../shared/widgets/base_button.dart';
 import '../shared/widgets/base_flat_button.dart';
 import '../shared/platform/platform_complex_alert_dialog.dart';
 import '../shared/platform/platform_exception_alert_dialog.dart';
 import '../shared/widgets/base_text_field.dart';
-import '../global/extensions.dart';
-import '../global/style_list.dart';
 
 class PhoneAuthCard extends StatelessWidget {
   const PhoneAuthCard({Key key}) : super(key: key);

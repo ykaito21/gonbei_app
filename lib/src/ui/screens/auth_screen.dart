@@ -1,12 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import '../../core/providers/auth_screen_provider.dart';
-import '../../core/providers/base_provider.dart';
-
 import '../global/style_list.dart';
 import '../global/extensions.dart';
 import '../shared/widgets/auth_button.dart';

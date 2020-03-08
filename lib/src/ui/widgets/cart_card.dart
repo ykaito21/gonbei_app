@@ -4,7 +4,7 @@ import '../../core/models/product_model.dart';
 import '../shared/widgets/cached_image.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
-import '../widgets/column_quantity_counter.dart';
+import 'column_quantity_counter.dart';
 
 class CartCard extends StatelessWidget {
   final CartModel cartItem;

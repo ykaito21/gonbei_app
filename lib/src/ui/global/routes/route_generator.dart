@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/models/product_model.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/auth_screen.dart';
@@ -8,7 +7,6 @@ import '../../screens/profile_edit_screen.dart';
 import '../../screens/account_settings_screen.dart';
 import '../../screens/payment_methods_screen.dart';
 import '../../screens/order_history_screen.dart';
-
 import '../style_list.dart';
 import '../extensions.dart';
 import 'route_path.dart';

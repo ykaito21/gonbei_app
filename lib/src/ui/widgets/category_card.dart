@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../core/models/category_model.dart';
 import '../../core/providers/category_provider.dart';
 import '../../core/providers/product_screen_provider.dart';
-import '../shared/widgets/cached_image.dart';
 import '../global/extensions.dart';
+import '../shared/widgets/cached_image.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel categoryItem;

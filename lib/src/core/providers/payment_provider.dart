@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gonbei_app/src/core/models/payment_model.dart';
-import 'package:gonbei_app/src/core/services/database_service.dart';
-
+import '../models/payment_model.dart';
+import '../services/database_service.dart';
 import '../services/api_path.dart';
 import '../services/payment_service.dart';
 import 'base_provider.dart';

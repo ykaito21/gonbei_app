@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../core/models/cart_model.dart';
 import '../../core/models/order_model.dart';
 import '../../core/providers/order_history_screen_provider.dart';
 import '../global/extensions.dart';
+import '../global/style_list.dart';
 import '../shared/platform/platform_exception_alert_dialog.dart';
 import '../shared/platform/platform_alert_dialog.dart';
 
@@ -130,7 +130,7 @@ class OrderRecordCard extends StatelessWidget {
                     return Row(
                       children: <Widget>[
                         Text(cartItem.productItem.name),
-                        SizedBox(width: 20.0),
+                        StyleList.horizontalBox20,
                         Text('${cartItem.quantity}'),
                       ],
                     );

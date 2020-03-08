@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/providers/theme_provider.dart';
 import '../../core/providers/auth_provider.dart';
 import '../global/style_list.dart';

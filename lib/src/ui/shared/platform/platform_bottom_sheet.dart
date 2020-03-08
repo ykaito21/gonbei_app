@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../global/extensions.dart';
-
+import '../../global/style_list.dart';
 import 'platform_widget.dart';
 
 class PlatformBottomSheet extends PlatformWidget {
@@ -76,9 +74,7 @@ class PlatformBottomSheet extends PlatformWidget {
             tiles: [
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                ),
+                padding: StyleList.verticalPadding15,
                 child: Text(
                   title,
                   textAlign: TextAlign.center,

@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../core/providers/base_provider.dart';
+import 'base_provider.dart';
 
 class ThemeProvider extends BaseProvider {
   String _currentTheme;

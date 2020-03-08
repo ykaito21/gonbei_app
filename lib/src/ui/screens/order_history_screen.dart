@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/providers/order_history_screen_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';

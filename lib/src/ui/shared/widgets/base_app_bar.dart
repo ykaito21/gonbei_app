@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../global/style_list.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -10,10 +11,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Container(
         height: 48.0,
-        padding: const EdgeInsets.symmetric(
-          vertical: 5.0,
-          horizontal: 10.0,
-        ),
+        padding: StyleList.verticalHorizontalpadding510,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15.0),

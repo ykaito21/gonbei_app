@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'base_provider.dart';
 
 class ProductScreenProvider extends BaseProvider {

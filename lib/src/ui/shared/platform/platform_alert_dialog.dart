@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../../global/extensions.dart';
 import 'platform_alert_dialog_action.dart';
 import 'platform_widget.dart';
-import '../../global/extensions.dart';
 
 class PlatformAlertDialog extends PlatformWidget {
   final String title;
