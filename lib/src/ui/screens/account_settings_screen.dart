@@ -52,6 +52,9 @@ class AccountSettingsScreen extends StatelessWidget {
                   : context.translate('light'),
               onPressed: () => themeProvider.changeTheme(),
             ),
+            //! bug? no space if using japanese locale
+            if (context.lang == 'ja')
+              SizedBox(height: 5.0),
             BaseButton(
               buttonText: context.translate('signOut'),
               onPressed: () async => await _signOut(context),

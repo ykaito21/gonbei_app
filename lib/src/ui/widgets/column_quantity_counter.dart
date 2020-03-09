@@ -3,6 +3,7 @@ import '../../core/models/cart_model.dart';
 import '../../core/providers/cart_provider.dart';
 import '../global/style_list.dart';
 import '../global/extensions.dart';
+import '../shared/platform/platform_alert_dialog.dart';
 import '../shared/platform/platform_exception_alert_dialog.dart';
 
 class ColumnQuantityCounter extends StatelessWidget {
@@ -25,15 +26,24 @@ class ColumnQuantityCounter extends StatelessWidget {
             cartItem: cartItem, isIncrement: true);
       } else {
         if (cartItem.quantity <= 1) {
-          await cartProvider.removeCartItem(cartItem);
-          //* optional
-          // Scaffold.of(context)
-          //   ..removeCurrentSnackBar()
-          //   ..showSnackBar(
-          //     context.baseSnackBar(
-          //       context.localizeMessage(cartItem.productItem.name, 'isRemoved'),
-          //     ),
-          //   );
+          final confirmation = await PlatformAlertDialog(
+            title: context.localizeAlertTtile(
+                cartItem.productItem.name, 'alertDeleteTitle'),
+            content: context.translate('alertDeleteContentCartItem'),
+            defaultActionText: context.translate('delete'),
+            cancelActionText: context.translate('cancel'),
+          ).show(context);
+          if (confirmation) {
+            await cartProvider.removeCartItem(cartItem);
+            //* optional
+            // Scaffold.of(context)
+            //   ..removeCurrentSnackBar()
+            //   ..showSnackBar(
+            //     context.baseSnackBar(
+            //       context.localizeMessage(cartItem.productItem.name, 'isRemoved'),
+            //     ),
+            //   );
+          }
         } else {
           await cartProvider.updateCartItem(
               cartItem: cartItem, isIncrement: false);
