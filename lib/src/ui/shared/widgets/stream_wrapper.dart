@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class StreamWrapper<T> extends StatelessWidget {
   final Stream<T> stream;
-  final Function onSuccess;
-  final Function onError;
-  final Function onWaitting;
+  final Function(BuildContext, T) onSuccess;
+  final Function(BuildContext, dynamic) onError;
+  final Function(BuildContext) onWaitting;
   final T initialData;
   const StreamWrapper({
     Key key,
@@ -17,9 +17,10 @@ class StreamWrapper<T> extends StatelessWidget {
         assert(onSuccess != null),
         super(key: key);
 
-  Function get _defaultOnError => (BuildContext cotext, error) => Center(
-        child: Text('Error: $error'),
-      );
+  Function get _defaultOnError =>
+      (BuildContext cotext, dynamic error) => Center(
+            child: Text('Error: $error'),
+          );
 
   Function get _defaultOnWaitting => (BuildContext cotext) => Center(
         child: CircularProgressIndicator(),

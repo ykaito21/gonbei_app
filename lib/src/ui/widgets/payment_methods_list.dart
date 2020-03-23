@@ -13,9 +13,9 @@ class PaymentMethodsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamWrapper<List<PaymentModel>>(
       stream: context.provider<PaymentProvider>().streamSources(),
-      onError: (BuildContext context, _) => StyleList.errorViewState(
+      onError: (context, _) => StyleList.errorViewState(
           context.translate('error'), StyleList.baseSubtitleTextStyle),
-      onSuccess: (BuildContext context, List<PaymentModel> methods) {
+      onSuccess: (context, methods) {
         if (methods.isEmpty)
           return StyleList.emptyViewState(context.translate('noPaymentMethod'),
               StyleList.baseSubtitleTextStyle);

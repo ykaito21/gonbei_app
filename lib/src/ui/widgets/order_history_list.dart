@@ -13,9 +13,9 @@ class OrderHistoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamWrapper<List<OrderModel>>(
       stream: context.provider<OrderHistoryScreenProvider>().streamOrders(),
-      onError: (BuildContext context, _) => StyleList.errorViewState(
+      onError: (context, _) => StyleList.errorViewState(
           context.translate('error'), StyleList.baseSubtitleTextStyle),
-      onSuccess: (BuildContext context, List<OrderModel> orders) {
+      onSuccess: (context, orders) {
         if (orders.isEmpty)
           return StyleList.emptyViewState(
               context.translate('noOrder'), StyleList.baseSubtitleTextStyle);

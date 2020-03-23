@@ -21,9 +21,9 @@ class CartScreen extends StatelessWidget {
           ? UnauthenticatedCard()
           : StreamWrapper<List<CartModel>>(
               stream: context.provider<CartProvider>().streamCart,
-              onError: (BuildContext context, _) => StyleList.errorViewState(
+              onError: (context, _) => StyleList.errorViewState(
                   context.translate('error'), StyleList.baseSubtitleTextStyle),
-              onSuccess: (BuildContext context, List<CartModel> cart) {
+              onSuccess: (context, cart) {
                 if (cart.isEmpty)
                   return StyleList.emptyViewState(
                       context.translate('emptyCart'),
