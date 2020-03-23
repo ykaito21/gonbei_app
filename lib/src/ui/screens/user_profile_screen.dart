@@ -21,8 +21,8 @@ class UserProfileScreen extends StatelessWidget {
           //* maybe doesn't have to use stream cuz always rebuild when change user info
           : StreamWrapper<UserModel>(
               stream: context.provider<UserProvider>().streamUser,
-              onError: (context, _) => StyleList.errorViewState(
-                  context.translate('error'), StyleList.baseSubtitleTextStyle),
+              onError: (context, _) =>
+                  StyleList.errorViewState(context.translate('error')),
               onSuccess: (context, user) {
                 return Padding(
                   padding: StyleList.allPadding10,

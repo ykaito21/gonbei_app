@@ -27,8 +27,7 @@ class ProductScreen extends StatelessWidget {
     final categoryProvider = context.provider<CategoryProvider>(listen: true);
     final productProvider = context.provider<ProductProvider>(listen: true);
     if (categoryProvider.isError || productProvider.isError)
-      return StyleList.errorViewState(
-          context.translate('error'), StyleList.baseSubtitleTextStyle);
+      return StyleList.errorViewState(context.translate('error'));
     if (!categoryProvider.isRetrieved || !productProvider.isRetrieved)
       return StyleList.loadingViewState();
     return Column(

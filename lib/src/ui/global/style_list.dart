@@ -65,10 +65,13 @@ class StyleList {
   static Widget loadingViewState() =>
       Center(child: CircularProgressIndicator());
 
-  static Widget emptyViewState(String text, TextStyle style) =>
+  static Widget emptyViewState(String text,
+          {TextStyle style: StyleList.baseSubtitleTextStyle}) =>
       Center(child: Text(text, style: style));
 
-  static Widget errorViewState(String text, TextStyle style) => Center(
+  static Widget errorViewState(String text,
+          {TextStyle style: StyleList.baseSubtitleTextStyle}) =>
+      Center(
         child: Text(text, style: style),
       );
 }

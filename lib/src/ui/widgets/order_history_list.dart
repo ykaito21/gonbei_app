@@ -13,12 +13,11 @@ class OrderHistoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamWrapper<List<OrderModel>>(
       stream: context.provider<OrderHistoryScreenProvider>().streamOrders(),
-      onError: (context, _) => StyleList.errorViewState(
-          context.translate('error'), StyleList.baseSubtitleTextStyle),
+      onError: (context, _) =>
+          StyleList.errorViewState(context.translate('error')),
       onSuccess: (context, orders) {
         if (orders.isEmpty)
-          return StyleList.emptyViewState(
-              context.translate('noOrder'), StyleList.baseSubtitleTextStyle);
+          return StyleList.emptyViewState(context.translate('noOrder'));
         return ListView.builder(
           itemCount: orders.length,
           itemBuilder: (context, index) {
