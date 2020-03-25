@@ -8,9 +8,9 @@ import '../global/style_list.dart';
 import '../shared/platform/platform_exception_alert_dialog.dart';
 import '../shared/platform/platform_alert_dialog.dart';
 
-class OrderRecordCard extends StatelessWidget {
+class OrderHistoryCard extends StatelessWidget {
   final OrderModel orderItem;
-  const OrderRecordCard({
+  const OrderHistoryCard({
     Key key,
     @required this.orderItem,
   })  : assert(orderItem != null),

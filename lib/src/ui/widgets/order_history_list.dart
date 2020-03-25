@@ -22,7 +22,7 @@ class OrderHistoryList extends StatelessWidget {
           itemCount: orders.length,
           itemBuilder: (context, index) {
             final orderItem = orders[index];
-            return OrderRecordCard(orderItem: orderItem);
+            return OrderHistoryCard(orderItem: orderItem);
           },
         );
       },
