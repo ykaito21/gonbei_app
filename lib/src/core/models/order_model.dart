@@ -18,7 +18,6 @@ DateTime parseTime(dynamic date) {
   }
 }
 
-// ? when should use final and factory constructor
 class OrderModel extends Equatable {
   final String id;
   final int price;
@@ -45,16 +44,19 @@ class OrderModel extends Equatable {
         assert(status != null),
         assert(cart != null);
 
-  OrderModel.fromFirestore(Map snapshot, String id)
-      : id = id ?? '',
-        price = snapshot['price'] ?? 0,
-        quantity = snapshot['quantity'] ?? 0,
-        code = snapshot['code'] ?? '',
-        date = parseTime(snapshot['date']) ?? DateTime.now(),
-        status = snapshot['status'] ?? '',
-        cart = (snapshot['cart'] as List ?? [])
-            .map((data) => CartModel.fromFirestore(data, data['id']))
-            .toList();
+  factory OrderModel.fromFirestore(Map snapshot, String id) {
+    return OrderModel(
+      id: id ?? '',
+      price: snapshot['price'] ?? 0,
+      quantity: snapshot['quantity'] ?? 0,
+      code: snapshot['code'] ?? '',
+      date: parseTime(snapshot['date']) ?? DateTime.now(),
+      status: snapshot['status'] ?? '',
+      cart: (snapshot['cart'] as List ?? [])
+          .map((data) => CartModel.fromFirestore(data, data['id']))
+          .toList(),
+    );
+  }
 
   Map<String, dynamic> toMapForFirestore() {
     return {
