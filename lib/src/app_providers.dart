@@ -34,11 +34,11 @@ List<SingleChildWidget> independentProviders = [
 List<SingleChildWidget> dependentProviders = [
   ChangeNotifierProxyProvider<FirebaseUser, CartProvider>(
     create: (_) => CartProvider(),
-    update: (_, user, cartProvier) => cartProvier..currentUser = user,
+    update: (_, user, cartProvider) => cartProvider..currentUser = user,
   ),
   ChangeNotifierProxyProvider<FirebaseUser, PaymentProvider>(
     create: (_) => PaymentProvider(),
-    update: (_, user, paymentProvier) => paymentProvier..currentUser = user,
+    update: (_, user, paymentProvider) => paymentProvider..currentUser = user,
   ),
   ProxyProvider<FirebaseUser, UserProvider>(
     create: (_) => UserProvider(),
