@@ -26,7 +26,7 @@
   "passwordValidationError": "パスワードは６文字以上です",
   "phoneNumberValidationError": "電話番号を確認してください",
   "enterCode": "コード入力",
-  "signupOrLogin": "Signup or Login",
+  "signupOrLogin": "会員登録・ログイン",
   "emptyCart": "カートは空です",
   "total": "合計",
   "buy": "購入",
